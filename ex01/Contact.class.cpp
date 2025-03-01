@@ -1,23 +1,41 @@
 
 
 #include "Contact.class.hpp"
+#include <cstdlib>
+#include <string>
+#include <readline/readline.h>
+#include <readline/history.h>
+
+
+
+// contants
+const char *Contact::input_msgs[5] = {
+    "Enter First Name: ",
+	"Enter Last Name: ",
+	"Enter Nickname: ",
+	"Enter Phone Number: ",
+	"Enter Darkest Secret: "
+};
+
 // setters
-void	Contact::setIndex(int prevIndex) {
-	index = prevIndex + 1;
-}
+void	Contact::setData(int currentIndex) {
+	char *input;
 
-void Contact::setName(const std::string &first, const std::string &last) {
-	firstName = first;
-	lastName = last;
-}
-
-void Contact::setPhoneNumber(const std::string &nick, const std::string &phone) {
-	nickName = nick;
-	number = phone;
-}
-
-void Contact::setSecret(const std::string &secret) {
-	dark = secret;
+	index = currentIndex;
+	for (int i = 0; i < 5; i++)
+	{
+		input = readline(input_msgs[i]);
+		if (!input)
+			return ;
+		switch (i) {
+			case 0: firstName = input; break;
+			case 1: lastName = input; break;
+			case 2: nickName = input; break;
+			case 3: number = input; break;
+			case 4: dark = input; break;
+		}
+		free(input);
+	}
 }
 
 // getters

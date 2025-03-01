@@ -7,18 +7,18 @@
 
 class Contact {
 	private:
+	    static const char *input_msgs[5];
 		int index;
 		std::string firstName;
 		std::string lastName;
 		std::string nickName;
 		std::string number;
 		std::string dark;
+		
+
 	public:
 		// setters
-		void setIndex(int prevIndex);
-		void setName(const std::string &first, const std::string &last);		
-		void setPhoneNumber(const std::string &nick, const std::string &phone);
-		void setSecret(const std::string &secret);
+		void setData(int currentIndex);
 		// getters
 		int getIndex();
 		std::string getFirstName();
