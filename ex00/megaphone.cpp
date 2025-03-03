@@ -5,19 +5,21 @@
 
 int main(int argc, char *argv[])
 {
+	std::string str;
 	if (argc > 1)
 	{
 		int	i = 1;
 		while (i < argc)
 		{
+			str = argv[i];
 			int j = 0;
-			while (argv[i][j])
+			while (str[j])
 			{
-				if (argv[i][j] >= 'a' && argv[i][j] <= 'z')
-					argv[i][j] = toupper(argv[i][j]);
+				if (str[j] >= 'a' && str[j] <= 'z')
+					str[j] = toupper(str[j]);
 				j++;
 			}
-			std::cout << argv[i];
+			std::cout << str;
 			i++;
 		}
 		std::cout << std::endl;

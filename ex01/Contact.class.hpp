@@ -24,7 +24,10 @@ class Contact {
 		std::string getFirstName();
 		std::string getLastName();
 		std::string getNickName();
+		std::string getPoneNumber();
 		std::string getDark();
+		// function
+		void print_info();
 };
 
 #endif

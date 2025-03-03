@@ -20,6 +20,7 @@ class PhoneBook {
 	public:
 		PhoneBook();
 		void addContact();
+		void displayContacts();
 		void searchContact();
 };
 
