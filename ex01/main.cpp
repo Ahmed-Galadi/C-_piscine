@@ -18,13 +18,13 @@ int main(void)
 			\n\t\e[1;36mSEARCH :\e[0m to search in the contact list.\
 			\n\t\e[1;93mEXIT :\e[0m to exit the programe.\n\033[38;5;46m▶\033[1;38;5;226m ");
 		if (!command)
-			return (1);
+			return (EXIT_FAILURE);
 		if (!strcmp(command, "ADD"))
 			phoneBook.addContact();
 		else if (!strcmp(command, "SEARCH"))
 			phoneBook.displayContacts();
 		else if (!strcmp(command,  "EXIT"))
-			return (EXIT_SUCCESS);
+			return (free(command), EXIT_SUCCESS);
 		else {
 			std::cout << "\e[0;31m" << std::endl;
 			std::cout << "┓ ┏          ┏┓             ┓  ╻" << std::endl;
@@ -33,6 +33,7 @@ int main(void)
 			std::cout << "          ┛                     " << std::endl;
 			std::cout << "\e[0m" << std::endl;
 		}
+		free(command);
 	}
 	return (0);
 }
