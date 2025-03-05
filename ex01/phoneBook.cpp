@@ -46,7 +46,9 @@ std::string PhoneBook::formatStr(const std::string str)
 std::string PhoneBook::itoa(int nbr) {
 	std::stringstream ss;
     
-	ss << nbr;                     // Insert number into stream
+	
+	// nsert number into stream
+	ss << nbr;
     std::string str_nbr = ss.str();
 	return (str_nbr);
 }
