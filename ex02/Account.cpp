@@ -13,7 +13,7 @@ int Account::_totalNbWithdrawals = 0;
 // static privat function 
 void	Account::_displayTimestamp( void ) {
 
-	std::time_t now = std::time(nullptr);
+	std::time_t now = std::time(NULL);
 	std::tm *local_time = std::localtime(&now);
 
 	int year = local_time->tm_year + 1900;
