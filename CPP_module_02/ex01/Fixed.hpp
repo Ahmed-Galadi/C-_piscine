@@ -1,7 +1,8 @@
 #ifndef FIXED_HPP
-# define FIXED_HPP
+#define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class Fixed {
 	private:
@@ -9,15 +10,23 @@ class Fixed {
 		int					fixedPoint;
 
 	public:
-		Fixed(void);
-		Fixed(const Fixed &setFixedPoint);
-		Fixed(const int intiger);
-		Fixed(const float floatingPoint);
-		Fixed &operator=(const Fixed &otherFixedPoint);
-		~Fixed(void);
-		
-		int	getRawBits(void) const;
-		void	setRawBits(const int raw);
+	//constructors
+		Fixed();
+		Fixed(const int input);
+		Fixed(const float input);
+		Fixed(const Fixed &copy);
+	//destructor
+		~Fixed();
+	//assignment operator
+		Fixed	&operator=(const Fixed &src);
+	//public member functions
+		float	toFloat(void) const;
+		int		toInt(void) const;
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
+
+//overload insertion operator
+std::ostream	&operator<<(std::ostream &o, Fixed const &fixed);
 
 #endif
