@@ -26,7 +26,11 @@ class Fixed {
 		bool	operator>=(const Fixed &other) const;
 		bool	operator<=(const Fixed &orther) const;
 		float	operator+(const Fixed &other) const;
+		Fixed	operator++(const int);
+		Fixed	operator++(void);
 		float	operator-(const Fixed &other) const;
+		Fixed	operator--(const int);
+		Fixed	operator--(void);
 		float	operator*(const Fixed &other) const;
 		float	operator/(const Fixed &other) const;
 	//public member functions
@@ -34,6 +38,9 @@ class Fixed {
 		int		toInt(void) const;
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
+	//static members
+		static Fixed	min(const Fixed &num1, const Fixed &num2);
+		static Fixed	max(const Fixed &num1, const Fixed &num2);
 };
 
 //overload insertion operator
