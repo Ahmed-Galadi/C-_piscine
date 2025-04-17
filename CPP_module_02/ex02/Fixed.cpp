@@ -33,6 +33,42 @@ Fixed &Fixed::operator=(const Fixed &src) {
 	return *this;
 }
 
+bool	Fixed::operator!=(const Fixed &other) const {
+	return (this->toFloat() != other.toFloat());
+}
+
+bool	Fixed::operator<(const Fixed &other) const {
+	return (this->toFloat() < other.toFloat());
+}
+
+bool	Fixed::operator>(const Fixed &other) const {
+	return (this->toFloat() < other.toFloat());
+}
+
+bool	Fixed::operator<=(const Fixed &other) const {
+	return (this->toFloat() <= other.toFloat());
+}
+
+bool	Fixed::operator>=(const Fixed &other) const {
+	return (this->toFloat() >= other.toFloat());
+}
+
+float	Fixed::operator+(const Fixed &other) const {
+	return (this->toFloat() + other.toFloat());
+}
+
+float	Fixed::operator-(const Fixed &other) const {
+	return (this->toFloat() - other.toFloat());
+}
+
+float	Fixed::operator*(const Fixed &other) const {
+	return (this->toFloat() * other.toFloat());
+}
+
+float	Fixed::operator/(const Fixed &other) const {
+	return (this->toFloat() / other.toFloat());
+}
+
 int	Fixed::toInt(void) const {
 	return (this->fixedPoint >> this->numFracBits);
 }

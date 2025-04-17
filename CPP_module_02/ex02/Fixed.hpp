@@ -19,16 +19,16 @@ class Fixed {
 		~Fixed();
 	//assignment operators
 		Fixed	&operator=(const Fixed &src);
-		Fixed	&operator!=(const Fixed &other) const;
-		Fixed	&operator==(const Fixed &other) const;
-		Fixed	&operator>(const Fixed &other) const;
-		Fixed	&operator<(const Fixed &other) const;
-		Fixed	&operator>=(const Fixed &other) const;
-		Fixed	&operator<=(const Fixed &orther) const;
-		Fixed	&operator+(const Fixed &other) const;
-		Fixed	operator-(const Fixed &other) const;
-		Fixed	operator*(const Fixed &other) const;
-		Fixed	operator/(const Fixed &other) const;
+		bool	operator!=(const Fixed &other) const;
+		bool	operator==(const Fixed &other) const;
+		bool	operator>(const Fixed &other) const;
+		bool	operator<(const Fixed &other) const;
+		bool	operator>=(const Fixed &other) const;
+		bool	operator<=(const Fixed &orther) const;
+		float	operator+(const Fixed &other) const;
+		float	operator-(const Fixed &other) const;
+		float	operator*(const Fixed &other) const;
+		float	operator/(const Fixed &other) const;
 	//public member functions
 		float	toFloat(void) const;
 		int		toInt(void) const;
