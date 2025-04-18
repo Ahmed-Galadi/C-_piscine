@@ -8,5 +8,5 @@ const std::string& Weapon::getType(void) const {
 }
 
 void	Weapon::setType(std::string weaponName) {
-	type = weaponName;
+	this->type = weaponName;
 }

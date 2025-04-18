@@ -3,9 +3,11 @@
 
 int main(void)
 {
-	Zombie *pointer = zombieHorde(10, "zombie");
+	int zombieNbr = 10;
+	Zombie *pointer = zombieHorde(zombieNbr, "zombie");
 	
-	pointer->announce();
-	delete(pointer);
+	for(int i = 0; i < zombieNbr;i++)
+		pointer[i].announce();
+	delete[] (pointer);
 	return (0);
 }
