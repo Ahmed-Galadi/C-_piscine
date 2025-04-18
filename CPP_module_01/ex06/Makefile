@@ -1,7 +1,6 @@
-
-NAME = BraiiiiiiinnnzzzZ
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-DEPS = Zombie.hpp
+NAME = harlFilter
+SRCS = main.cpp Harl.cpp
+DEPS = Harl.hpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 

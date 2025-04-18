@@ -3,31 +3,38 @@
 #include <cstring>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
-	Harl obj =  Harl();
-	
+int get_level_index(const std::string& level) {
+	if (level == "DEBUG") return 0;
+	if (level == "INFO") return 1;
+	if (level == "WARNING") return 2;
+	if (level == "ERROR") return 3;
+	return (-1);
+}
+
+int main(int argc, char* argv[]) {
 	if (argc != 2) {
-		std::cout << "ERROR: wrong args!" << std::endl;
-		return (1);
+		std::cout << "Usage: ./harlFilter <LEVEL>" << std::endl;
+		return 1;
 	}
-	if (std::strcmp(argv[1], "DEBUG") && std::strcmp(argv[1], "WARNING")
-		&& std::strcmp(argv[1], "INFO") && std::strcmp(argv[1], "ERROR")) {
-		obj.complain("GARBADGE");
-		return (1);
-	}
-	switch (argv[1][0]) {
-		case 'D':
+
+	Harl obj;
+	int level = get_level_index(argv[1]);
+
+	switch (level) {
+		case 0:
 			obj.complain("DEBUG");
 			break;
-		case 'I':
+		case 1:
 			obj.complain("INFO");
 			break;
-		case 'W':
+		case 2:
 			obj.complain("WARNING");
 			break;
-		case 'E':
+		case 3:
 			obj.complain("ERROR");
 			break;
-	}	
-	return (0);
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break;
+	}
 }
