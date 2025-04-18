@@ -1,10 +1,10 @@
-#ifndef CLAPTAP_HPP
-# define CLAPTAP_HPP
+#ifndef ClapTrap_HPP
+# define ClapTrap_HPP
 
 #include <iostream>
 #include <string>
 
-class ClapTap {
+class ClapTrap {
 	private:
 		std::string name;
 		int			hitPoints = 10;
@@ -12,10 +12,10 @@ class ClapTap {
 		int			attackDamage = 0;
 
 	public:
-		ClapTap(const std::string &name);
-		ClapTap(const ClapTap &source);
-		ClapTap &operator=(const ClapTap &other);
-		~ClapTap(void);
+		ClapTrap(const std::string &name);
+		ClapTrap(const ClapTrap &source);
+		ClapTrap &operator=(const ClapTrap &other);
+		~ClapTrap(void);
 
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);

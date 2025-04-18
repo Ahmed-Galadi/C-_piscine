@@ -1,8 +1,8 @@
 
-#include "ClapTap.hpp"
+#include "ClapTrap.hpp"
 
 int main() {
-    ClapTap bot("Clappy");
+    ClapTrap bot("Clappy");
     bot.attack("target dummy");
     bot.takeDamage(5);
     bot.beRepaired(3);
