@@ -15,15 +15,22 @@ void replace_words(std::string &original_str, const std::string &to_find, const 
 int main(int argc, char *argv[]) {
 	if (argc != 4) {
 		std::cout << "Error: wrong args!" << std::endl;
-		return 1;
+		return (1);
 	}
 
+	if (!*argv[2])
+		return (1);
 	std::ifstream oldFile(argv[1], std::ios::in);
-	std::ofstream newFile((std::string(argv[1]) + ".replace").c_str());
-
-	if (!oldFile.is_open() || !newFile.is_open()) {
+	if (!oldFile.is_open()) {
 		std::cout << "Error: cannot open files!" << std::endl;
-		return 1;
+		oldFile.close();
+		return (1);
+	}
+	std::ofstream newFile((std::string(argv[1]) + ".replace").c_str());
+	if (!newFile.is_open()) {
+		std::cout << "Error: cannot open files!" << std::endl;
+		newFile.close();
+		return (1);
 	}
 
 	std::string fileLine;
@@ -34,5 +41,5 @@ int main(int argc, char *argv[]) {
 
 	oldFile.close();
 	newFile.close();
-	return 0;
+	return (0);
 }

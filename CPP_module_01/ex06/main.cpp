@@ -14,7 +14,7 @@ int get_level_index(const std::string& level) {
 int main(int argc, char* argv[]) {
 	if (argc != 2) {
 		std::cout << "Usage: ./harlFilter <LEVEL>" << std::endl;
-		return 1;
+		return (1);
 	}
 
 	Harl obj;

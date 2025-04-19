@@ -46,12 +46,12 @@ void	Harl::debug(void) {
 
 void	Harl::info(void) {
 	std::cout << "\e[1;38;5;226m[INFO]\e[0m : I cannot believe adding extra bacon costs more money. You didn’t put \
-	enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
+enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
 }
 
 void	Harl::warning(void) {
 	std::cout << "\e[1m\e[38;2;255;165;0m[WARNING]\e[0m : I think I deserve to have some extra bacon for free. I’ve been coming for \
-	years, whereas you started working here just last month." << std::endl;
+years, whereas you started working here just last month." << std::endl;
 }
 
 void	Harl::error(void) {

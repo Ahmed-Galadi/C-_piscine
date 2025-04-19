@@ -1,6 +1,6 @@
-NAME = moar_brainz
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp zombieHorde.cpp
-DEPS = Zombie.hpp
+NAME = voilence
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+DEPS = HumanA.hpp HumanB.hpp Weapon.hpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
