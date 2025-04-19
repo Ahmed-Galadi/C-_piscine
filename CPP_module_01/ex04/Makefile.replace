@@ -1,11 +1,11 @@
 NAME = sfl
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
+GG = c++
+GGFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(GG) $(GGFLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
 

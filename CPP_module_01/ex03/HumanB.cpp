@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-HumanB::HumanB(const std::string &name) : name(name) {}
+HumanB::HumanB(const std::string &name) : name(name), weapon(NULL) {}
 
 void	HumanB::setWeapon(Weapon &theWeapon) {
 	weapon = &theWeapon;

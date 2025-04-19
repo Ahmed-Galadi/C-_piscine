@@ -15,7 +15,7 @@ class Zombie {
 		void setName(std::string &name);
 		
 	private:
-	std::string name;
+		std::string name;
 };
 
 Zombie*	newZombie(std::string name);

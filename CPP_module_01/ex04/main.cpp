@@ -36,9 +36,10 @@ int main(int argc, char *argv[]) {
 	std::string fileLine;
 	while (std::getline(oldFile, fileLine)) {
 		replace_words(fileLine, std::string(argv[2]), std::string(argv[3]));
-		newFile << fileLine << std::endl;
+		newFile << fileLine;
+		if (!oldFile.eof())
+			newFile << "\n";
 	}
-
 	oldFile.close();
 	newFile.close();
 	return (0);
