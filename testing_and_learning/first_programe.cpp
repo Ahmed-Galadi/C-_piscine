@@ -1,7 +1,20 @@
 #include <iostream>
 
-int main()
-{
-	std::cout << "Hello World" << std::endl;
-	return (0);
+class Base {
+public:
+    virtual void speak() {
+		std::cout << "Base speaking" << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void speak() override {
+		std::cout << "Derived speaking" << std::endl;
+    }
+};
+
+int main() {
+    Derived* obj = new Base(); // ⚠️ Problem here!
+    obj->speak(); 
 }

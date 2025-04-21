@@ -45,6 +45,7 @@ int main() {
 
     enemy.guardGate();
 	sideChar.attack(enemyName);
+	enemy.takeDamage(sideChar.getAttackDamage());
 	displayStatus(enemy);
 	displayStatus(sideChar);
 	sideChar.highFivesGuys();
