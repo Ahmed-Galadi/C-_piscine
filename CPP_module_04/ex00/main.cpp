@@ -23,7 +23,7 @@ int main( void )
 	const WrongAnimal* wrong_cat = new WrongCat();
 
 	std::cout << std::endl;
-	wrong_cat->makeSound(); // worng cat sound!
+	wrong_cat->makeSound(); // worng animal sound!
 	wrong_animal->makeSound(); // wrong animal sound!
 
 	std::cout << std::endl;

@@ -5,6 +5,7 @@ ClapTrap::ClapTrap(): name("default"), hitPoints(10), energyPoints(10), attackDa
 }
 
 ClapTrap::ClapTrap(const std::string &name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
+	std::cout << "ClapTrap Parametrized Constructor called" << std::endl;
 	std::cout << "ClapTrap " << this->name << " is created!" << std::endl;
 }
 
@@ -33,13 +34,21 @@ void	ClapTrap::attack(const std::string &target) {
 		this->energyPoints--;
 		std::cout << "ClapTrap " << this->name << " attacked " << target << " causing " << this->attackDamage << " points of damage!" << std::endl;
 	}
+	else
+		std::cout << "ClapTrap is already dead\n";
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
-	if (this->hitPoints > 0) {
-		this->hitPoints -= amount;
+	if (this->hitPoints > 0)
+	{
+		if (this->hitPoints <= amount)
+			this->hitPoints = 0;
+		else
+			this->hitPoints -= amount;
 		std::cout << "ClapTrap " << this->name << " got " << amount << " points of damage!" << std::endl;
 	}
+	else
+		std::cout << "ClapTrap is already dead\n";
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
@@ -48,6 +57,6 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		this->energyPoints--;
 		std::cout << "ClapTrap " << this->name << " repaired " << amount << " health points!" << std::endl; 
 	}
+	else
+		std::cout << "ClapTrap is already dead\n";
 }
-
-

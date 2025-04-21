@@ -25,3 +25,4 @@ Brain &Brain::operator=(Brain const &other)
 		this->ideas[i] = other.ideas[i];
 	return (*this);
 }
+
