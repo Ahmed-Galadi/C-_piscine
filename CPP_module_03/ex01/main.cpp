@@ -1,7 +1,6 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 #include <ostream>
 
 void	displayStatus(const ClapTrap &character) {
@@ -12,18 +11,14 @@ void	displayStatus(const ClapTrap &character) {
 	std::cout << "-----------------------------" << std::endl;
 }
 int main() {
-	std::string	playerName	  = "*Hero*";
-	std::string	enemyName	  = "<Bad Guy>";
-	std::string	sideCharacter = "(side character)";
+	std::string playerName = "*Hero*";
+	std::string enemyName = "<Bad Guy>";
 
-    ClapTrap	player(playerName);
-    ScavTrap	enemy(enemyName);
-	FragTrap	sideChar(sideCharacter);
-
+    ClapTrap player(playerName);
+    ScavTrap enemy(enemyName);
 
 	displayStatus(enemy);
 	displayStatus(player);
-	displayStatus(sideCharacter);
 
     player.attack(enemyName);
 	enemy.takeDamage(player.getAttackDamage());
@@ -31,7 +26,7 @@ int main() {
 	displayStatus(enemy);
 	displayStatus(player);
 
-    player.beRepaired(5);
+    player.beRepaired(100);
     displayStatus(player);
 
     enemy.attack(playerName);
@@ -44,10 +39,6 @@ int main() {
 	displayStatus(enemy);
 
     enemy.guardGate();
-	sideChar.attack(enemyName);
-	displayStatus(enemy);
-	displayStatus(sideChar);
-	sideChar.highFivesGuys();
 
     return 0;
 }
