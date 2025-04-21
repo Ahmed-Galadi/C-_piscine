@@ -2,34 +2,46 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include <cstdlib>
 
 int main( void )
 {
-	const Animal* animal = new Animal();
+	std::cout << "\e[33m---------------------------------" << std::endl;
+	std::cout << "-        EXERCICE EXAMPLE       -" << std::endl;	
+	std::cout << "---------------------------------\e[0m" << std::endl;
+
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
-
 	std::cout << std::endl;
-	std::cout << "Dog Type => " << dog->getType() << std::endl;
-	std::cout << "Cat Type => " << cat->getType() << std::endl;
-	cat->makeSound(); // cat sound!
-	dog->makeSound(); // dog sound!
-	animal->makeSound(); //animal sound!
-
-	std::cout << std::endl;
-	const WrongAnimal* wrong_animal = new WrongAnimal();
-	const WrongAnimal* wrong_cat = new WrongCat();
-
-	std::cout << std::endl;
-	wrong_cat->makeSound(); // worng cat sound!
-	wrong_animal->makeSound(); // wrong animal sound!
-
-	std::cout << std::endl;
-	delete animal;
 	delete dog;
 	delete cat;
-	delete wrong_cat;
-	delete wrong_animal;
+	std::cout << "\e[34m---------------------------------" << std::endl;
+	system("leaks -c ./thinkingZoo");
+	std::cout << "---------------------------------\e[0m" << std::endl;
+
+	const Animal	*animal_array[10];
+	std::cout << std::endl;
+
+	std::cout << "\e[32m---------------------------------" << std::endl;
+	std::cout << "-          DOG CREATION         -" << std::endl;
+	std::cout << "---------------------------------\e[0m" << std::endl;
+	for (int i = 0; i < 5; i++)
+		animal_array[i] = new Dog();
+	std::cout << std::endl;
+	std::cout << "\e[32m---------------------------------" << std::endl;
+	std::cout << "-          CAT CREATION         -" << std::endl;
+	std::cout << "---------------------------------\e[0m" << std::endl;
+	for (int i = 5; i < 10; i++)
+		animal_array[i] = new Cat();
+	std::cout << std::endl;
+	std::cout << "\e[31m---------------------------------" << std::endl;
+	std::cout << "-       DESTRUCTION START       -" << std::endl;
+	std::cout << "---------------------------------\e[0m" << std::endl;
+	for (int i = 0; i < 10; i++)
+		delete animal_array[i];
+	std::cout << std::endl;
+
+	std::cout << "\e[34m---------------------------------" << std::endl;
+	system("leaks -c ./thinkingZoo");
+	std::cout << "---------------------------------\e[0m" << std::endl;
 }

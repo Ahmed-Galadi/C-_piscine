@@ -3,8 +3,12 @@
 # define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal {
+	private:
+		std::string type;
+		Brain *brain
 	public:
 		Cat();
 		~Cat();
