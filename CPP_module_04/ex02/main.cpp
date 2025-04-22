@@ -16,7 +16,7 @@ int main( void )
 	delete dog;
 	delete cat;
 	std::cout << "\e[34m---------------------------------" << std::endl;
-	system("leaks -q thinkingZoo");
+	system("valgrind --leak-check=full ./thinkingZoo");
 	std::cout << "---------------------------------\e[0m" << std::endl;
 
 	const Animal	*animal_array[10];
@@ -42,6 +42,6 @@ int main( void )
 	std::cout << std::endl;
 
 	std::cout << "\e[34m---------------------------------" << std::endl;
-	system("leaks -q thinkingZoo");
+	system("valgrind --leak-check=full ./thinkingZoo");
 	std::cout << "---------------------------------\e[0m" << std::endl;
 }

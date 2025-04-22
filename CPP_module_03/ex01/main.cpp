@@ -22,7 +22,7 @@ int main() {
 
     player.attack(enemyName);
 	enemy.takeDamage(player.getAttackDamage());
-    
+
 	displayStatus(enemy);
 	displayStatus(player);
 
@@ -31,7 +31,7 @@ int main() {
 
     enemy.attack(playerName);
     player.takeDamage(enemy.getAttackDamage());
-    
+
 	displayStatus(player);
 	displayStatus(enemy);
 

@@ -13,7 +13,8 @@ FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
     hitPoints = 100;
     energyPoints = 100;
     attackDamage = 30;
-    std::cout << "FragTrap " << name << " constructor is called!" << std::endl;
+    std::cout << "|FragTrap Parametrized Constructor called|" << std::endl;
+	std::cout << "|FragTrap " << this->name << " is created|" << std::endl;
 }
 
 

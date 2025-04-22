@@ -16,7 +16,8 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name) {
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
-    std::cout << "ScavTrap " << name << " constructor is called!" << std::endl;
+    std::cout << "|ScavTrap Parametrized Constructor called|" << std::endl;
+	std::cout << "|ScavTrap " << this->name << " is created|" << std::endl;
 }
 
 ScavTrap::~ScavTrap() {	
@@ -35,7 +36,7 @@ void	ScavTrap::attack(const std::string& target) {
 		this->energyPoints--;
 		std::cout << "\e[38;5;208mScavTrap " << this->name << " attacked " << target << " causing " << this->attackDamage << " points of damage!\e[0m" << std::endl;
 	} else {
-		std::cout << "\e[38;5;208mScavTrap " << this->name << " is low on points!\e[0m" << std::endl;
+		std::cout << "\e[38;5;208mScavTrap " << this->name << " is low on points or dead!\e[0m" << std::endl;
 	}
 }
 

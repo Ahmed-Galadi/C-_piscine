@@ -5,12 +5,12 @@ ClapTrap::ClapTrap(): name("default"), hitPoints(10), energyPoints(10), attackDa
 }
 
 ClapTrap::ClapTrap(const std::string &name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
-	std::cout << "ClapTrap Parametrized Constructor called" << std::endl;
-	std::cout << "ClapTrap " << this->name << " is created!" << std::endl;
+	std::cout << "|ClapTrap Parametrized Constructor called|" << std::endl;
+	std::cout << "|ClapTrap " << this->name << " is created|" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &source) {
-	std::cout << "Copy constructor of " << this->name << " has been called!" << std::endl;
+	std::cout << "ClapTrap Copy constructor of " << this->name << " has been called!" << std::endl;
    *this = source; 
 }
 
@@ -19,7 +19,7 @@ ClapTrap::~ClapTrap( void ) {
 };
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap& other) {
-	std::cout << this->name << " called the assignment operator overload!" << std::endl;
+	std::cout << "ClapTrap" << this->name << " called the assignment operator overload!" << std::endl;
     if (this != &other) {
         this->name = other.name;
         this->hitPoints = other.hitPoints;
@@ -35,7 +35,7 @@ void	ClapTrap::attack(const std::string &target) {
 		std::cout << "ClapTrap " << this->name << " attacked " << target << " causing " << this->attackDamage << " points of damage!" << std::endl;
 	}
 	else
-		std::cout << "ClapTrap is already dead\n";
+		std::cout << "ClapTrap is out of energy or already dead\n";
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
@@ -48,7 +48,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		std::cout << "ClapTrap " << this->name << " got " << amount << " points of damage!" << std::endl;
 	}
 	else
-		std::cout << "ClapTrap is already dead\n";
+		std::cout << "ClapTrap is out of energy or already dead\n";
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
@@ -58,5 +58,5 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << "ClapTrap " << this->name << " repaired " << amount << " health points!" << std::endl; 
 	}
 	else
-		std::cout << "ClapTrap is already dead\n";
+		std::cout << "ClapTrap is out of energy or already dead\n";
 }

@@ -16,7 +16,8 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name) {
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
-    std::cout << "ScavTrap " << name << " constructor is called!" << std::endl;
+    std::cout << "|ScavTrap Parametrized Constructor called|" << std::endl;
+	std::cout << "|ScavTrap " << this->name << " is created|" << std::endl;
 }
 
 ScavTrap::~ScavTrap() {	
@@ -26,7 +27,7 @@ ScavTrap::~ScavTrap() {
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
     ClapTrap::operator=(other);
-    std::cout << "ScavTrap Copy assignment operator called." << std::endl;
+    std::cout << "ScavTrap Copy assignment operator called!" << std::endl;
     return (*this);
 }
 

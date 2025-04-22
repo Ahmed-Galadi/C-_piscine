@@ -5,8 +5,8 @@ ClapTrap::ClapTrap(): name("default"), hitPoints(10), energyPoints(10), attackDa
 }
 
 ClapTrap::ClapTrap(const std::string &name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
-	std::cout << "ClapTrap Parametrized Constructor called" << std::endl;
-	std::cout << "ClapTrap " << this->name << " is created!" << std::endl;
+	std::cout << "|ClapTrap Parametrized Constructor called|" << std::endl;
+	std::cout << "|ClapTrap " << this->name << " is created|" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &source) {
@@ -19,7 +19,7 @@ ClapTrap::~ClapTrap( void ) {
 };
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap& other) {
-	std::cout << this->name << " called the assignment operator overload!" << std::endl;
+	std::cout << "ClapTrap" << this->name << " the assignment operator overload is called!" << std::endl;
     if (this != &other) {
         this->name = other.name;
         this->hitPoints = other.hitPoints;
@@ -33,6 +33,8 @@ void	ClapTrap::attack(const std::string &target) {
 	if (this->energyPoints > 0 && this->hitPoints > 0) {
 		this->energyPoints--;
 		std::cout << "\e[31mClapTrap " << this->name << " attacked " << target << " causing " << this->attackDamage << " points of damage!\e[0m" << std::endl;
+	} else {
+		std::cout << "\e[31mClapTrap " << this->name << " is low on points or dead!\e[0m" << std::endl;
 	}
 }
 
@@ -43,6 +45,8 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		else
 			this->hitPoints -= amount;
 		std::cout << "\e[31mClapTrap " << this->name << " got " << amount << " points of damage!\e[0m" << std::endl;
+	} else {
+		std::cout << "\e[31mClapTrap " << this->name << " is dead!\e[0m" << std::endl;
 	}
 }
 
@@ -51,6 +55,8 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		this->hitPoints += amount;
 		this->energyPoints--;
 		std::cout << "\e[32mClapTrap " << this->name << " repaired " << amount << " health points!\e[0m" << std::endl; 
+	} else {
+		std::cout << "\e[31mClapTrap " << this->name << " is low on points or dead!\e[0m" << std::endl;
 	}
 }
 
