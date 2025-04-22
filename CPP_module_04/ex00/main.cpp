@@ -6,6 +6,18 @@
 #include "WrongCat.hpp"
 #include <cstdlib>
 
+int leaksCheck()
+{
+	std::cout << "\e[34m---------------------------------" << std::endl;
+	if (std::getenv("THINKINGZOO_VALGRIND") == NULL)
+	{
+		system("THINKINGZOO_VALGRIND=1 valgrind ./thinkingZoo");
+		std::cout << "---------------------------------\e[0m" << std::endl;
+		return (0);
+	}
+	return (0);
+}
+
 int main( void )
 {
 	std::cout << "\e[32m---------------------------------" << std::endl;
