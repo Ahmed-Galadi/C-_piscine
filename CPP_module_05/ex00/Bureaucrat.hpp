@@ -1,8 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include <exception>
 #include <iostream>
+
+#include <exception>
+
 
 class Bureaucrat {
 	private:
@@ -30,6 +32,6 @@ class Bureaucrat {
 		};
 };
 
-std::ostream &operator<<(std::ostream o, const Bureaucrat &other);
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &other);
 
 #endif
