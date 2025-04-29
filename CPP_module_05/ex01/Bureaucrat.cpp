@@ -1,5 +1,5 @@
 
-#include "Bureaucrat.hpp"
+#include "includes.h"
 
 Bureaucrat::Bureaucrat() : name("no_name"), grade(150) {
 }
@@ -51,6 +51,10 @@ void	Bureaucrat::decBGrade() {
 	this->grade++;
 	if (this->grade > 150)
 		throw Bureaucrat::GradeTooLowException();
+}
+
+void	Bureaucrat::signForm(Form &toSignForm) {
+	
 }
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &other) {

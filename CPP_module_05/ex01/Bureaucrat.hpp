@@ -1,10 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include <iostream>
-
-#include <exception>
-
+#include "includes.h"
 
 class Bureaucrat {
 	private:
@@ -30,6 +27,7 @@ class Bureaucrat {
 			public:
 				virtual const char *what() const throw();
 		};
+		void	signForm(Form &toSignForm);
 };
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &other);
