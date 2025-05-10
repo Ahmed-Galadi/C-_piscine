@@ -1,7 +1,10 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include "includes.h"
+
+#include <iostream>
+
+class Bureaucrat;
 
 class Form {
 	private:
@@ -19,15 +22,15 @@ class Form {
 		std::string	getName() const;
 		int			getSignGrade() const;
 		int			getExecuteGrade() const;
-		int			isFormSigned() const;
+		bool		isFormSigned() const;
 		
-		void		beSigned(const Bureaucrat &whoSign);
+		void		beSigned(Bureaucrat &whoSign);
 		
 		class gradeTooHighException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
-		class gradeTooLowExeption : public std::exception {
+		class gradeTooLowException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
