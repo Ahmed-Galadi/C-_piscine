@@ -41,7 +41,7 @@ int Bureaucrat::getGrade() const {
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
-	return ("\e[31mBureaucrat Grade is too Low!\e[-1m");
+	return ("\e[31mBureaucrat Grade is too Low!\e[0m");
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
@@ -64,7 +64,7 @@ void	Bureaucrat::signForm(Form &toSignForm) {
 	try {
 		toSignForm.beSigned(*this);
 	} catch (const Form::gradeTooLowException &e) {
-		std::cout << e.what() << std::endl;
+		std::cout << ' ' << this->name << " couldn't sign Form " << toSignForm.getName() << " Because, " << e.what() << std::endl;
 	}
 }
 

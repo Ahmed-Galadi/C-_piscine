@@ -24,8 +24,8 @@ int main(void)
 			std::cerr << a->getName() << " was not able to sign " << b->getName() << ": " << e.what() << std::endl;
 		}
 
-		if (b->isFormSigned())
-			std::cout << "Form named \"" << b->getName() << "\" is signed\n";
+		/*if (b->isFormSigned())*/
+		/*	std::cout << "Form named \"" << b->getName() << "\" is signed\n";*/
 
 		std::cout << *b;
 		std::cout << std::endl;

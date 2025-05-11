@@ -58,6 +58,7 @@ void Form::beSigned(Bureaucrat &whoSign) {
 	if (whoSign.getGrade() > this->gradeToSign)
 		throw gradeTooLowException();
 	this->isSigned = true;
+	std::cout << " Bureaucrat " << whoSign.getName() << " signed Form " << this->getName() << '\n'; 
 }
 
 std::ostream &operator<<(std::ostream &o, const Form &other) {
