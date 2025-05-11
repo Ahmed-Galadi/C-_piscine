@@ -2,26 +2,33 @@
 #include "Form.hpp"
 
 
-Form::Form() : name("no_name"), isSigned(false), gradeToSign(150), gradeToExecute(150) {}
+Form::Form() : name("no_name"), isSigned(false), gradeToSign(150), gradeToExecute(150) {
+	std::cout << "Constructing Form " << this->name << '\n';
+}
 
 Form::Form(const std::string &initName, const int initGradeSgn, const int initGradeExec) : name(initName), gradeToSign(initGradeSgn), gradeToExecute(initGradeExec) {
 	if (this->gradeToSign < 1 || this->gradeToExecute < 1)
 		throw gradeTooHighException();
 	if (this->gradeToSign > 150 || this->gradeToExecute > 150)
 		throw gradeTooLowException();
+	std::cout << "Constructing Form " << this->name << '\n';
 }
 
 Form::Form(const Form &other) : name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {
 	*this = other;
+	std::cout << "Copy Constructor of Form " << this->name << " is Called!" << '\n';
 }
 
 Form &Form::operator=(const Form &other) {
 	if (this != &other)
 		this->isSigned = other.isSigned;
+	std::cout << "Assignment Operator Copied Form" << this->name << '\n'; 
 	return (*this);
 }
 
-Form::~Form() {}
+Form::~Form() {
+	std::cout << "Destructing Form " << this->name << '\n';
+}
 
 std::string Form::getName() const {
 	return (this->name);

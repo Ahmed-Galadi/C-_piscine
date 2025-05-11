@@ -6,7 +6,7 @@
 int main(void)
 {
 	{
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		std::cout << "\e[34mConstructing\e[0m" << std::endl;
 		Bureaucrat *a = new Bureaucrat();
 		Form *b = new Form();
 		std::cout << std::endl;
@@ -23,6 +23,9 @@ int main(void)
 		{
 			std::cerr << a->getName() << " was not able to sign " << b->getName() << ": " << e.what() << std::endl;
 		}
+
+		if (b->isFormSigned())
+			std::cout << "Form named \"" << b->getName() << "\" is signed\n";
 
 		std::cout << *b;
 		std::cout << std::endl;
@@ -50,7 +53,7 @@ int main(void)
 		// Assistant signs the Form
 		try
 		{
-			// c->beSigned(*a);
+			/*c->beSigned(*a);*/
 			a->signForm(*c);
 		}
 		catch(Bureaucrat::GradeTooLowException &e)

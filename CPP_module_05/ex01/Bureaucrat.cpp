@@ -3,6 +3,7 @@
 #include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("no_name"), grade(150) {
+	std::cout << "Constructing Bureaucrat " << this->name << '\n';
 }
 
 Bureaucrat::Bureaucrat(const std::string &initName,	int initGrade) : name(initName) {
@@ -11,19 +12,24 @@ Bureaucrat::Bureaucrat(const std::string &initName,	int initGrade) : name(initNa
 		throw GradeTooLowException();
 	if (grade < 1)
 		throw GradeTooHighException();
+	std::cout << "Constructing Bureaucrat " << this->name << '\n';
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name) {
 	*this = other;
+	std::cout << "Constructer Copy Bureaucrat " << other.name << " to " << this->name << '\n';
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
+	std::string oldName = this->name;
 	if (this != &other) 
 		this->grade = other.grade;
+	std::cout << "Assignement Operator Copied Bureaucrat " << other.name << " to " << oldName << '\n';
 	return (*this);
 }
 
 Bureaucrat::~Bureaucrat() {
+	std::cout << "Destructing Bureaucrat " << this->name << '\n';
 }
 
 const std::string &Bureaucrat::getName() const {
@@ -35,11 +41,11 @@ int Bureaucrat::getGrade() const {
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
-	return ("\e[31mGrade is too Low!\e[0m");
+	return ("\e[31mBureaucrat Grade is too Low!\e[-1m");
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
-	return ("\e[33mGrade is too Hight!\e[0m");
+	return ("\e[33mBureaucrat Grade is too Hight!\e[0m");
 }
 
 void	Bureaucrat::incBGrade() {
@@ -63,6 +69,6 @@ void	Bureaucrat::signForm(Form &toSignForm) {
 }
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &other) {
-	o << other.getName() << ", bureaucrat grade " << other.getGrade();
+	o << " " << other.getName() << ", bureaucrat grade " << other.getGrade() << '\n';
 	return (o);
 }
