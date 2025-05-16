@@ -6,7 +6,9 @@
 class ShrubberyCreationForm : public AForm {
 	private:
 		static const std::string ASCII_TREE;
+		const	std::string target;
 	public:
+		ShrubberyCreationForm();
 		~ShrubberyCreationForm();
 		
 		void execute(const Bureaucrat &executor) const;

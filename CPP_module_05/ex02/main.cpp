@@ -1,6 +1,8 @@
 
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
+#include <iostream>
 
 
 int main(void)
@@ -8,7 +10,7 @@ int main(void)
 	{
 		std::cout << "\e[34mConstructing\e[0m" << std::endl;
 		Bureaucrat *a = new Bureaucrat();
-		Form *b = new Form();
+		AForm *b = new ShrubberyCreationForm();
 		std::cout << std::endl;
 
 		std::cout << "\033[34mTesting\033[0m" << std::endl;
@@ -42,7 +44,7 @@ int main(void)
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
 		Bureaucrat *a = new Bureaucrat("Assistant", 145);
 		Bureaucrat *b = new Bureaucrat("CEO", 1);
-		Form *c = new Form("Rent Contract", 140, 100);
+		AForm *c = new ShrubberyCreationForm("Rent Contract", 140, 100);
 		std::cout << std::endl;
 
 		std::cout << "\033[34mTesting\033[0m" << std::endl;
@@ -89,14 +91,14 @@ int main(void)
 		std::cout << std::endl;
 
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Form *a = NULL;
+		AForm *a = NULL;
 
 		// sign-grade too high
 		try
 		{
-			a = new Form("FORM_1",160, 145);
+			a = new ShrubberyCreationForm("FORM_1",160, 145);
 		}
-		catch (Form::gradeTooLowException &e)
+		catch (ShrubberyCreationForm::gradeTooLowException &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -105,9 +107,9 @@ int main(void)
 		// exec-grade too high
 		try
 		{
-			a = new Form("FORM_2",145, 160);
+			a = new ShrubberyCreationForm("FORM_2",145, 160);
 		}
-		catch (Form::gradeTooLowException &e)
+		catch (ShrubberyCreationForm::gradeTooLowException &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -116,9 +118,9 @@ int main(void)
 		// sign-grade too low
 		try
 		{
-			a = new Form("FORM_3", -15, 145);
+			a = new ShrubberyCreationForm("FORM_3", -15, 145);
 		}
-		catch (Form::gradeTooHighException &e)
+		catch (ShrubberyCreationForm::gradeTooHighException &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -127,9 +129,9 @@ int main(void)
 		// exec-grade too low
 		try
 		{
-			a = new Form("FORM_4",145, -15);
+			a = new ShrubberyCreationForm("FORM_4",145, -15);
 		}
-		catch (Form::gradeTooHighException &e)
+		catch (ShrubberyCreationForm::gradeTooHighException &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
