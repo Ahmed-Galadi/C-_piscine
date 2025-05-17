@@ -23,7 +23,8 @@ class AForm {
 		int			getSignGrade() const;
 		int			getExecuteGrade() const;
 		bool		isFormSigned() const;
-		
+	
+		void		setIsSigned(bool state);
 		void		beSigned(Bureaucrat &whoSign);
 		virtual void execute(Bureaucrat const & executor) const = 0;
 

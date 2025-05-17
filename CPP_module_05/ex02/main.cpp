@@ -44,7 +44,7 @@ int main(void)
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
 		Bureaucrat *a = new Bureaucrat("Assistant", 145);
 		Bureaucrat *b = new Bureaucrat("CEO", 1);
-		AForm *c = new ShrubberyCreationForm("Rent Contract", 140, 100);
+		AForm *c = new ShrubberyCreationForm("Rent Contract");
 		std::cout << std::endl;
 
 		std::cout << "\033[34mTesting\033[0m" << std::endl;
@@ -96,7 +96,7 @@ int main(void)
 		// sign-grade too high
 		try
 		{
-			a = new ShrubberyCreationForm("FORM_1",160, 145);
+			a = new ShrubberyCreationForm("FORM_1");
 		}
 		catch (ShrubberyCreationForm::gradeTooLowException &e)
 		{
@@ -107,7 +107,7 @@ int main(void)
 		// exec-grade too high
 		try
 		{
-			a = new ShrubberyCreationForm("FORM_2",145, 160);
+			a = new ShrubberyCreationForm("FORM_2");
 		}
 		catch (ShrubberyCreationForm::gradeTooLowException &e)
 		{
@@ -118,7 +118,7 @@ int main(void)
 		// sign-grade too low
 		try
 		{
-			a = new ShrubberyCreationForm("FORM_3", -15, 145);
+			a = new ShrubberyCreationForm("FORM_3");
 		}
 		catch (ShrubberyCreationForm::gradeTooHighException &e)
 		{
@@ -129,7 +129,7 @@ int main(void)
 		// exec-grade too low
 		try
 		{
-			a = new ShrubberyCreationForm("FORM_4",145, -15);
+			a = new ShrubberyCreationForm("FORM_4");
 		}
 		catch (ShrubberyCreationForm::gradeTooHighException &e)
 		{

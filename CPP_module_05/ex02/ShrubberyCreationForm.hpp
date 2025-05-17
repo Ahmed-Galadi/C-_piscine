@@ -6,9 +6,12 @@
 class ShrubberyCreationForm : public AForm {
 	private:
 		static const std::string ASCII_TREE;
-		const	std::string target;
+		std::string target;
 	public:
 		ShrubberyCreationForm();
+		ShrubberyCreationForm(const std::string &initTarget);
+		ShrubberyCreationForm(const ShrubberyCreationForm &other);
+		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 		~ShrubberyCreationForm();
 		
 		void execute(const Bureaucrat &executor) const;

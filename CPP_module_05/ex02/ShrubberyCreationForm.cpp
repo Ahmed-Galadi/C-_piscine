@@ -13,6 +13,22 @@ const std::string ShrubberyCreationForm::ASCII_TREE = "               ,@@@@@@@, 
        |.|        | |         | | \n\
     \\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_";
 
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("[Shrubbery Creation Form]", 145, 137), target("[Default]") {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &initTarget) : AForm(initTarget, 145, 137), target(initTarget) {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) {
+	*this = other;
+}
+
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
+	if (this != &other) {
+		target = other.target;
+		this->setIsSigned(other.isFormSigned());
+	}
+	return (*this);
+}
+
 const char *ShrubberyCreationForm::ExecException::what() const throw () {
 	return ("Shruberry Form cannot be executed! ==> Can't open file");
 }
@@ -23,7 +39,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
 	std::string fileName = this->target + "_shrubbery";
-	std::ofstream file(fileName);
+	std::ofstream file(fileName.c_str());
 
 	if (!file.is_open())
 		throw ExecException();

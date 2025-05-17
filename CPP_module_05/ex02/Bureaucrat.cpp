@@ -1,6 +1,6 @@
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name("no_name"), grade(150) {
 	std::cout << "Constructing Bureaucrat " << this->name << '\n';
@@ -60,10 +60,10 @@ void	Bureaucrat::decBGrade() {
 		throw Bureaucrat::GradeTooLowException();
 }
 
-void	Bureaucrat::signForm(Form &toSignForm) {
+void	Bureaucrat::signForm(AForm &toSignForm) {
 	try {
 		toSignForm.beSigned(*this);
-	} catch (const Form::gradeTooLowException &e) {
+	} catch (const AForm::gradeTooLowException &e) {
 		std::cout << ' ' << this->name << " couldn't sign Form " << toSignForm.getName() << " Because, " << e.what() << std::endl;
 	}
 }
