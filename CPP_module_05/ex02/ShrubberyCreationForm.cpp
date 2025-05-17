@@ -1,5 +1,6 @@
 
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 #include <fstream>
 
 const std::string ShrubberyCreationForm::ASCII_TREE = "               ,@@@@@@@, \n\
@@ -29,7 +30,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-const char *ShrubberyCreationForm::ExecException::what() const throw () {
+const char *ShrubberyCreationForm::ExecOpenException::what() const throw () {
 	return ("Shruberry Form cannot be executed! ==> Can't open file");
 }
 
@@ -37,13 +38,16 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 	std::cout << "Shrubberry Destroyed!" << std::endl;
 }
 
-void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
+void	ShrubberyCreationForm::execForm(const Bureaucrat &executor) const {
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw AForm::gradeTooLowException();
 	std::string fileName = this->target + "_shrubbery";
 	std::ofstream file(fileName.c_str());
 
 	if (!file.is_open())
-		throw ExecException();
+		throw ExecOpenException();
 	file << ASCII_TREE;
 	file.close();
+	std::cout << executor.getName() << " executed " << this->getName() << std::endl;
 }
 

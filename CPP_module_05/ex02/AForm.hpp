@@ -26,13 +26,20 @@ class AForm {
 	
 		void		setIsSigned(bool state);
 		void		beSigned(Bureaucrat &whoSign);
-		virtual void execute(Bureaucrat const & executor) const = 0;
-
+		void execute(Bureaucrat const &executor) const;
+		
+		virtual void execForm(Bureaucrat const & executor) const = 0;
 		class gradeTooHighException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
+
 		class gradeTooLowException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class NotSignedExeption : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};

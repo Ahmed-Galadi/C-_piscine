@@ -7,144 +7,37 @@
 
 int main(void)
 {
+	// ShrumberryCreationForm Tests 
 	{
-		std::cout << "\e[34mConstructing\e[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat();
-		AForm *b = new ShrubberyCreationForm();
-		std::cout << std::endl;
+		Bureaucrat	*boss = new Bureaucrat("boss", 15);
+		Bureaucrat	*employee = new Bureaucrat("employee", 150);
+		AForm		*bossTreeForm = new ShrubberyCreationForm("ASCII");
+		AForm		*employeeTreeForm = new ShrubberyCreationForm("errorASCII");
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		std::cout << *a;
-		std::cout << *b;
-
-		try
-		{
-			b->beSigned(*a);
+		std::cout << *boss;
+		std::cout << *employee;
+		std::cout << *bossTreeForm;
+		std::cout << *employeeTreeForm;
+		
+		try {
+			bossTreeForm->beSigned(*boss);
+			employeeTreeForm->beSigned(*employee);
+		} catch (AForm::gradeTooLowException &e) {
+			std::cerr << employee->getName() << " Failed To Sign Form : " << e.what() << std::endl;
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << a->getName() << " was not able to sign " << b->getName() << ": " << e.what() << std::endl;
+		
+		try {
+			bossTreeForm->execute(*boss);
+			employeeTreeForm->execute(*employee);
+		} catch (AForm::NotSignedExeption &e) {
+			std::cerr << "Failed To Execute Form ==> " << e.what() << std::endl;
 		}
 
-		/*if (b->isFormSigned())*/
-		/*	std::cout << "Form named \"" << b->getName() << "\" is signed\n";*/
-
-		std::cout << *b;
-		std::cout << std::endl;
-
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
-		delete a;
-		delete b;
-		std::cout << std::endl;
+		delete boss;
+		delete employee;
+		delete bossTreeForm;
+		delete employeeTreeForm;
 	}
-	std::cout << "-------------------------------------------------------" << std::endl;
-	{
-		std::cout << std::endl;
-
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat("Assistant", 145);
-		Bureaucrat *b = new Bureaucrat("CEO", 1);
-		AForm *c = new ShrubberyCreationForm("Rent Contract");
-		std::cout << std::endl;
-
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		std::cout << *a;
-		std::cout << *b;
-		std::cout << *c;
-
-		// Assistant signs the Form
-		try
-		{
-			/*c->beSigned(*a);*/
-			a->signForm(*c);
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << "\033[33m" << a->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "\033[0m" << std::endl;
-		}
-
-		// CEO signs the Form
-		std::cout << *c;
-		try
-		{
-			c->beSigned(*b);
-			// b->signForm(*c);
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << "\033[33m" << b->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "\033[0m" << std::endl;
-		}
-		std::cout << *c;
-
-		// try signing the from again
-		b->signForm(*c);
-		std::cout << std::endl;
-
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
-		delete a;
-		delete b;
-		delete c;
-		std::cout << std::endl;
-	}
-	std::cout << "-------------------------------------------------------" << std::endl;
-	{
-		std::cout << std::endl;
-
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		AForm *a = NULL;
-
-		// sign-grade too high
-		try
-		{
-			a = new ShrubberyCreationForm("FORM_1");
-		}
-		catch (ShrubberyCreationForm::gradeTooLowException &e)
-		{
-			std::cerr << "\033[33mConstructing default failed: " <<
-			e.what() << "\033[0m" << std::endl;
-		}
-
-		// exec-grade too high
-		try
-		{
-			a = new ShrubberyCreationForm("FORM_2");
-		}
-		catch (ShrubberyCreationForm::gradeTooLowException &e)
-		{
-			std::cerr << "\033[33mConstructing default failed: " <<
-			e.what() << "\033[0m" << std::endl;
-		}
-
-		// sign-grade too low
-		try
-		{
-			a = new ShrubberyCreationForm("FORM_3");
-		}
-		catch (ShrubberyCreationForm::gradeTooHighException &e)
-		{
-			std::cerr << "\033[33mConstructing default failed: " <<
-			e.what() << "\033[0m" << std::endl;
-		}
-
-		// exec-grade too low
-		try
-		{
-			a = new ShrubberyCreationForm("FORM_4");
-		}
-		catch (ShrubberyCreationForm::gradeTooHighException &e)
-		{
-			std::cerr << "\033[33mConstructing default failed: " <<
-			e.what() << "\033[0m" << std::endl;
-		}
-
-		// Deconstruction to prevent unused variable, in this case will never be called
-		if (a != NULL)
-		{
-			std::cout << std::endl;
-			std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
-			delete a;
-		}
-		std::cout << std::endl;
-	}
+	
 	return (0);
 }

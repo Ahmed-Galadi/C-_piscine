@@ -35,7 +35,7 @@ std::string AForm::getName() const {
 }
 
 int AForm::getSignGrade() const {
-	return (this->gradeToExecute);
+	return (this->gradeToSign);
 }
 
 int AForm::getExecuteGrade() const {
@@ -57,7 +57,19 @@ const char *AForm::gradeTooHighException::what() const throw() {
 const char *AForm::gradeTooLowException::what() const throw() {
 	return ("Grade is too Low!");
 }
- 
+
+const char *AForm::NotSignedExeption::what() const throw() {
+	return ("can't execute unsigned form !");
+}
+
+void AForm::execute(const Bureaucrat &executor) const {
+	if (!this->isSigned)
+		throw NotSignedExeption();
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw gradeTooLowException();
+	execForm(executor);
+}
+
 void AForm::beSigned(Bureaucrat &whoSign) {
 	if (whoSign.getGrade() > this->gradeToSign)
 		throw gradeTooLowException();

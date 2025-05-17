@@ -14,9 +14,9 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 		~ShrubberyCreationForm();
 		
-		void execute(const Bureaucrat &executor) const;
+		void execForm(const Bureaucrat &executor) const;
 		
-		class ExecException : public std::exception {
+		class ExecOpenException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
