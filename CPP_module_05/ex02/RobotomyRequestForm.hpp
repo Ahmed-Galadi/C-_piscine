@@ -5,13 +5,21 @@
 
 class RobotomyRequestForm : public AForm {
 	private:
-		static const bool access;
-		const std::string target;
+		std::string target;
 	
 	public:
 		RobotomyRequestForm();
 		RobotomyRequestForm(const std::string &initTarget);
+		RobotomyRequestForm(const RobotomyRequestForm &other);
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
+		~RobotomyRequestForm();
+
+		void execForm(const Bureaucrat &executor);
+		
+		class FailedRobotomyExeption : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 };
 
 
