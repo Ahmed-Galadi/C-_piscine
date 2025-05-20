@@ -14,7 +14,7 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 		~RobotomyRequestForm();
 
-		void execForm(const Bureaucrat &executor);
+		void execForm(const Bureaucrat &executor) const;
 		
 		class FailedRobotomyExeption : public std::exception {
 			public:
