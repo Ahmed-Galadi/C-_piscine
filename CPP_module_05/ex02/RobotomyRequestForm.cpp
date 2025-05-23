@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 #include <cstdlib>
 #include <ctime>
 
@@ -14,7 +15,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	return (*this);
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AForm(other) {
 	*this = other;
 }
 
@@ -49,5 +50,5 @@ void RobotomyRequestForm::execForm(const Bureaucrat &executor) const {
   |_|   |_|\n\
   / \\   / \\\n\
  (>.<) (>.<)\n\
-Robotomized Successfully!\n";
+Robotomized Successfully By ==> " << executor.getName() << std::endl;
 }
