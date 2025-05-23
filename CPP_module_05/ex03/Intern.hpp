@@ -18,7 +18,8 @@ class Intern {
 		AForm	*makeForm(const std::string &formName, const std::string &formType) const;
 		
 		class InternCantCreate : public std::exception {
-			virtual const char *what() const throw();
+			public:
+				virtual const char *what() const throw();
 		};
 };
 

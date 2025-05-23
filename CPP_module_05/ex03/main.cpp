@@ -4,6 +4,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include <iostream>
 
 
@@ -126,6 +127,43 @@ _-\"\"\"\"\"\"\"-_\n\
 		delete person1Pardon;
 		delete person2Pardon;
 	}
+	
+	//
+	std::cout << "»»————————————————————————⍟————————————————————————««\n";
+	std::cout << "\t\t\tIntern Tests\n";
+	std::cout << "»»————————————————————————⍟————————————————————————««\n";
+	{
+		Intern	*intern = new Intern();
+		
+		AForm	*internShrubbery = NULL;
+		AForm	*internRobotomy = NULL;    	
+		AForm	*internPardon = NULL;
+		AForm	*internNotFount = NULL;
+	
+		
+			internRobotomy = intern->makeForm("Robot", "robotomy request");		
+			internShrubbery = intern->makeForm("Bender", "shrubbery creation");
+			internPardon = intern->makeForm("President", "presidential pardon");
 
+		if (internShrubbery)
+			std::cout << *internShrubbery;
+		if (internRobotomy)
+			std::cout << *internRobotomy;
+		if (internPardon)
+			std::cout << *internPardon;
+			
+		try {
+			internNotFount = intern->makeForm("nonsens", "nonsens");      	
+		} catch (Intern::InternCantCreate &e) {
+			std::cout << e.what() << std::endl;
+		}
+
+		
+		
+		delete intern;
+		delete internShrubbery;
+		delete internRobotomy;
+		delete internPardon;
+	}
 	return (0);
 }
