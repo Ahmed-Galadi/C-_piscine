@@ -97,7 +97,7 @@ _-\"\"\"\"\"\"\"-_\n\
 	std::cout << "\t\tPresidential Pardon Tests\n";
 	std::cout << "»»————————————————————————⍟————————————————————————««\n";
 	{
-		Bureaucrat	*person1 = new Bureaucrat("Person-1", 20);
+		Bureaucrat	*person1 = new Bureaucrat("Person-1", 1);
 		Bureaucrat	*person2 = new Bureaucrat("Person-2", 25);
 		AForm		*person1Pardon = new PresidentialPardonForm("[Person-1 pardon form]");
 		AForm		*person2Pardon = new PresidentialPardonForm("[Person-2 pardon form]");
@@ -120,6 +120,11 @@ _-\"\"\"\"\"\"\"-_\n\
 			std::cerr << person2->getName() << "Execution grade too low: "
 						<< e.what() << std::endl;
 		}
+
+		delete person1;
+		delete person2;
+		delete person1Pardon;
+		delete person2Pardon;
 	}
 
 	return (0);
