@@ -32,5 +32,22 @@ void RobotomyRequestForm::execForm(const Bureaucrat &executor) const {
 	std::cout << "* Driling noise *\n";
 	if (!(std::rand() % 2))
 		throw RobotomyRequestForm::FailedRobotomyExeption();
-	std::cout << "Robotomized Successfully!\n";
+	std::cout << "    ·___·\n\
+   |o   o|\n\
+    \\ ' /\n\
+     |¯| \n\
+/¯|¯¯¯|¯ ¯|¯\\\n\
+| |___|___| |\n\
+| |\\__|__/| |\n\
+|_| |_|_| |_|\n\
+ ¥  |_|_|  ¥\n\
+  /¯|···|¯\\\n\
+  | |   | |\n\
+  |_|   |_|\n\
+  |¯|   |¯|\n\
+  | |   | |\n\
+  |_|   |_|\n\
+  / \\   / \\\n\
+ (>.<) (>.<)\n\
+Robotomized Successfully!\n";
 }
