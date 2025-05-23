@@ -62,14 +62,6 @@ const char *AForm::NotSignedExeption::what() const throw() {
 	return ("can't execute unsigned form !");
 }
 
-void AForm::execute(const Bureaucrat &executor) const {
-	if (!this->isSigned)
-		throw NotSignedExeption();
-	if (executor.getGrade() > this->getExecuteGrade())
-		throw gradeTooLowException();
-	execForm(executor);
-}
-
 void AForm::beSigned(Bureaucrat &whoSign) {
 	if (whoSign.getGrade() > this->gradeToSign)
 		throw gradeTooLowException();

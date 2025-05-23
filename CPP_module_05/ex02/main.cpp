@@ -32,8 +32,8 @@ int main(void)
 		}
 		
 		try {
-			bossTreeForm->execute(*boss);
-			employeeTreeForm->execute(*employee);
+			boss->executeForm(*bossTreeForm);
+			employee->executeForm(*employeeTreeForm);
 		} catch (AForm::NotSignedExeption &e) {
 			std::cerr << employee->getName() << "Failed To Execute Form ==>"
 						<< " " <<e.what() << std::endl;
@@ -67,8 +67,8 @@ int main(void)
 		}
 
 		try {
-			mrRobotForm->execute(*robot);
-			mrHumanForm->execute(*human);
+			robot->executeForm(*mrRobotForm);
+			human->executeForm(*mrHumanForm);
 		} catch (AForm::NotSignedExeption &e) {
 			std::cerr << human->getName() << " Failed To Execute Form ==> "
 					 << e.what() << std::endl;
@@ -98,7 +98,7 @@ _-\"\"\"\"\"\"\"-_\n\
 	std::cout << "»»————————————————————————⍟————————————————————————««\n";
 	{
 		Bureaucrat	*person1 = new Bureaucrat("Person-1", 1);
-		Bureaucrat	*person2 = new Bureaucrat("Person-2", 25);
+		Bureaucrat	*person2 = new Bureaucrat("Person-2", 27);
 		AForm		*person1Pardon = new PresidentialPardonForm("[Person-1 pardon form]");
 		AForm		*person2Pardon = new PresidentialPardonForm("[Person-2 pardon form]");
 
@@ -111,8 +111,8 @@ _-\"\"\"\"\"\"\"-_\n\
 		}
 
 		try {
-			person1Pardon->execute(*person1);
-			person2Pardon->execute(*person2);
+			person1->executeForm(*person1Pardon);
+			person2->executeForm(*person2Pardon);
 		} catch (AForm::NotSignedExeption &e) {
 			std::cerr << person2->getName() << " Failed To Execute Form ==> "
 						 << e.what() << std::endl;
