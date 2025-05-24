@@ -135,16 +135,12 @@ _-\"\"\"\"\"\"\"-_\n\
 	{
 		Intern	*intern = new Intern();
 		
-		AForm	*internShrubbery = NULL;
-		AForm	*internRobotomy = NULL;    	
-		AForm	*internPardon = NULL;
-		AForm	*internNotFount = NULL;
-	
-		
-			internRobotomy = intern->makeForm("Robot", "robotomy request");		
-			internShrubbery = intern->makeForm("Bender", "shrubbery creation");
-			internPardon = intern->makeForm("President", "presidential pardon");
 
+		AForm	*internRobotomy = intern->makeForm("Robot", "robotomy request");		
+		AForm	*internShrubbery = intern->makeForm("Bender", "shrubbery creation");
+		AForm	*internPardon = intern->makeForm("President", "presidential pardon");
+
+	
 		if (internShrubbery)
 			std::cout << *internShrubbery;
 		if (internRobotomy)
@@ -152,12 +148,14 @@ _-\"\"\"\"\"\"\"-_\n\
 		if (internPardon)
 			std::cout << *internPardon;
 			
+		AForm	*internNotFount = NULL;
+		
 		try {
 			internNotFount = intern->makeForm("nonsens", "nonsens");      	
 		} catch (Intern::InternCantCreate &e) {
 			std::cout << e.what() << std::endl;
 		}
-
+		(void)internNotFount;
 		
 		
 		delete intern;
