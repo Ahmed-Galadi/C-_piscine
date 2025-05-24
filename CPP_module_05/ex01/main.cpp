@@ -24,8 +24,6 @@ int main(void)
 			std::cerr << a->getName() << " was not able to sign " << b->getName() << ": " << e.what() << std::endl;
 		}
 
-		/*if (b->isFormSigned())*/
-		/*	std::cout << "Form named \"" << b->getName() << "\" is signed\n";*/
 
 		std::cout << *b;
 		std::cout << std::endl;
@@ -56,7 +54,7 @@ int main(void)
 			/*c->beSigned(*a);*/
 			a->signForm(*c);
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
+		catch(std::exception &e)
 		{
 			std::cerr << "\033[33m" << a->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "\033[0m" << std::endl;
 		}
@@ -68,7 +66,7 @@ int main(void)
 			c->beSigned(*b);
 			// b->signForm(*c);
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
+		catch(std::exception &e)
 		{
 			std::cerr << "\033[33m" << b->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "\033[0m" << std::endl;
 		}
@@ -96,7 +94,7 @@ int main(void)
 		{
 			a = new Form("FORM_1",160, 145);
 		}
-		catch (Form::gradeTooLowException &e)
+		catch (std::exception &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -107,7 +105,7 @@ int main(void)
 		{
 			a = new Form("FORM_2",145, 160);
 		}
-		catch (Form::gradeTooLowException &e)
+		catch (std::exception &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -118,7 +116,7 @@ int main(void)
 		{
 			a = new Form("FORM_3", -15, 145);
 		}
-		catch (Form::gradeTooHighException &e)
+		catch (std::exception &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -129,7 +127,7 @@ int main(void)
 		{
 			a = new Form("FORM_4",145, -15);
 		}
-		catch (Form::gradeTooHighException &e)
+		catch (std::exception &e)
 		{
 			std::cerr << "\033[33mConstructing default failed: " <<
 			e.what() << "\033[0m" << std::endl;
@@ -142,7 +140,6 @@ int main(void)
 			std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
 			delete a;
 		}
-		std::cout << std::endl;
 	}
 	return (0);
 }

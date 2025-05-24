@@ -27,14 +27,14 @@ int main(void)
 		try {
 			bossTreeForm->beSigned(*boss);
 			employeeTreeForm->beSigned(*employee);
-		} catch (AForm::gradeTooLowException &e) {
+		} catch (std::exception &e) {
 			std::cerr << employee->getName() << " Failed To Sign Form : " << e.what() << std::endl;
 		}
 		
 		try {
 			boss->executeForm(*bossTreeForm);
 			employee->executeForm(*employeeTreeForm);
-		} catch (AForm::NotSignedExeption &e) {
+		} catch (std::exception &e) {
 			std::cerr << employee->getName() << "Failed To Execute Form ==>"
 						<< " " <<e.what() << std::endl;
 		}
