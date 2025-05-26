@@ -14,18 +14,32 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) {
 ScalarConverter::~ScalarConverter() {}
 
 void	ScalarConverter::convert(std::string &param) {
-	if (isCharacter(param))
-		printCharacter(param);
-	else if (isInteger(param))
-		printInteger(param);
-	else if (isFloat(param))
-		printFloat(param);
-	else if (isDouble(param))
-		printDouble(param);
+	if (param.empty())
+		std::cout << std::endl;
+	/*else if (isCharacter(param))*/
+	/*	printCharacter(param);*/
+	/*else if (isInteger(param))*/
+	/*	printInteger(param);*/
+	/*else if (isFloat(param))*/
+	/*	printFloat(param);*/
+	/*else if (isDouble(param))*/
+	/*	printDouble(param);*/
 }
 
 bool	isCharacter(const std::string &param) {
-	if (param.length() == 1)
-		return (true);
-	return (false);
+	return (param.length() == 1 && std::isprint(param[0]));
 }
+
+bool	isInteger(const std::string &param) {
+	std::size_t i = 0;
+	if ( (param[i] == '+' || param[i] == '-')) {
+		if (param.length() == 1)
+			return (false);
+		i++;
+	}
+	for (; i < param.length(); i++)
+		if (!std::isdigit(param[i]))
+			return (false);
+	return (true);
+}
+
