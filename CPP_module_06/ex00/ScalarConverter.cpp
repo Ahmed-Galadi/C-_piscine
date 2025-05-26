@@ -43,3 +43,22 @@ bool	isInteger(const std::string &param) {
 	return (true);
 }
 
+bool	isRepeated(const std::string &str, char c) {
+	int	repeatCount = 0;
+	for (std::size_t i = 0; i < str.length(); i++) {
+		if (str[i] == c)
+			repeatCount++;
+		if (repeatCount > 1)
+			return (false);
+	}
+	return (true);
+}
+
+bool isFloat(const std::string &param) {
+	const std::string &validChars = "-+f.";
+	std::size_t i = 0;
+	for (; i < validChars.length(); i++)
+		if (isRepeated(param, validChars[i]))
+			return (false);
+	return (true);
+}

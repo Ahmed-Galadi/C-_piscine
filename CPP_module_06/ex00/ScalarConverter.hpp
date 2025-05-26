@@ -13,10 +13,14 @@ class ScalarConverter {
 		static void		convert(std::string &param);
 };
 
+
+// helpers
+bool	isRepeated(const std::string &str, char c);
+
 // checkers	
 bool	isCharacter(const std::string &param);
 bool	isInteger(const std::string &param);
-/*bool	isFloat(const std::string &param);*/
+bool	isFloat(const std::string &param);
 /*bool	isDouble(const std::string &param);*/
 /**/
 /*// printers*/
