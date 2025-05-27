@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
 ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) {}
@@ -124,5 +124,17 @@ void	printCharacter(const std::string &param) {
 void	printInteger(const std::string &param) {
 	std::cout << "int: ";
 	if (isCharacter(param))
-		std::cout << static_cast<char>(param[0]) + 0 << std::endl;
+		std::cout << static_cast<int>(param[0]) - 0 << std::endl;
+	if (isInteger(param))
+		std::cout << std::atoi(param.c_str()) << std::endl;
+	if (isFloat(param))
+		std::cout << static_cast<int>(std::atof(param.c_str())) << std::endl;
+	if (isDouble(param))
+		std::cout << static_cast<int>(std::atof(param.c_str())) << std::endl;
+}
+
+void	printFloat(const std::string &param) {
+	std::cout << "float: ";
+	if (isCharacter(param) || isInteger(param))
+		std::cout << static_cast<float>(std::atof(param.c_str())) << ".0f" << std::endl;
 }

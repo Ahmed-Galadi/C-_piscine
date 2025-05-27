@@ -7,6 +7,9 @@ int main(int argc, char *argv[]) {
 		std::cout << "is integer ==> " << isInteger(argv[1]) << std::endl;
 		std::cout << "is Float ==> " << isFloat(argv[1]) << std::endl;
 		std::cout << "is Double ==> " << isDouble(argv[1]) << std::endl;
+		printCharacter(argv[1]);
+		printInteger(argv[1]);
+		printFloat(argv[1]);
 	}
 
 }

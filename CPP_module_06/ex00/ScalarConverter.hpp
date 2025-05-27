@@ -26,5 +26,5 @@ bool	isDouble(const std::string &param);
 // printers
 void	printCharacter(const std::string &param);
 void	printInteger(const std::string &param);
-/*void	printFloat(const std::string &param);*/
+void	printFloat(const std::string &param);
 /*void	printDouble(const std::string &param);*/
