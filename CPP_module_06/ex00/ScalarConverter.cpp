@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <cmath>
+#include <climits>
+
 ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) {}
@@ -11,19 +14,67 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) {
 	return (*this);
 }
 
-ScalarConverter::~ScalarConverter() {}
+void ScalarConverter::convert(const std::string &param) {
+	double value;
+	bool isValid = (isCharacter(param) || isInteger(param) || isFloat(param) || isDouble(param) || isSpecialLiteral(param));
 
-void	ScalarConverter::convert(std::string &param) {
-	if (param.empty())
-		std::cout << std::endl;
-	/*else if (isCharacter(param))*/
-	/*	printCharacter(param);*/
-	/*else if (isInteger(param))*/
-	/*	printInteger(param);*/
-	/*else if (isFloat(param))*/
-	/*	printFloat(param);*/
-	/*else if (isDouble(param))*/
-	/*	printDouble(param);*/
+	if (!isValid) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+		return;
+	}
+
+	if (isCharacter(param))
+		value = static_cast<double>(param[0]);
+	else
+		value = std::strtod(param.c_str(), NULL);
+
+	printCharacter(value);
+	printInteger(value);
+	printFloat(value);
+	printDouble(value);
+}
+
+void	printCharacter(double &value) {
+
+	std::cout << "char: ";
+	if (value < 0 || value > 127 || std::isnan(value))
+		std::cout << "impossible" << std::endl;
+	else if (!std::isprint(static_cast<char>(value)))
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
+}
+
+void printInteger(double &value) {
+	std::cout << "int: ";
+	if (value < static_cast<double>(INT_MIN) || value > static_cast<double>(INT_MAX) || std::isnan(value))
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<int>(value) << std::endl;
+}
+
+void printFloat(double &value) {
+	
+	std::cout << "float: ";
+	if (isinff(value) && value > 0)
+		std::cout << "+";
+	std::cout << static_cast<float>(value);
+	if (value == static_cast<int>(value))
+		std::cout << ".0";
+	std::cout << "f" << std::endl;
+}
+
+void printDouble(double &value) {
+	std::cout << "double: ";
+	if (std::isinf(value) && value > 0)
+		std::cout << "+";
+	std::cout << static_cast<double>(value);
+	if (value == static_cast<int>(value))
+		std::cout << ".0";
+	std::cout << std::endl;
 }
 
 // helpers
@@ -57,10 +108,25 @@ bool isCharsValid(const std::string &str, const std::string &validChars) {
 	return true;
 }
 
+std::string removeChar(const std::string &str, const std::string &toRemove) {
+    std::string output;
+    for (std::size_t i = 0; i < str.length(); ++i) {
+        bool skip = false;
+        for (std::size_t j = 0; j < toRemove.length(); ++j) {
+            if (str[i] == toRemove[j]) {
+                skip = true;
+                break;
+            }
+        }
+        if (!skip)
+            output += str[i];
+    }
+    return output;
+}
 
 // checks
-bool	isCharacter(const std::string &param) {
-	return (param.length() == 1 && std::isprint(param[0]));
+bool isCharacter(const std::string &param) {
+	return (param.length() == 1 && !std::isdigit(param[0]));
 }
 
 bool	isInteger(const std::string &param) {
@@ -112,29 +178,8 @@ bool isDouble(const std::string &param) {
 	return true;
 }
 
-// printers
-void	printCharacter(const std::string &param) {
-	std::cout << "char: ";
-	if (isCharacter(param))
-		std::cout << static_cast<char>(param[0]) << std::endl;
-	else
-		 std::cout << "not printable!" << std::endl;
-}
-
-void	printInteger(const std::string &param) {
-	std::cout << "int: ";
-	if (isCharacter(param))
-		std::cout << static_cast<int>(param[0]) - 0 << std::endl;
-	if (isInteger(param))
-		std::cout << std::atoi(param.c_str()) << std::endl;
-	if (isFloat(param))
-		std::cout << static_cast<int>(std::atof(param.c_str())) << std::endl;
-	if (isDouble(param))
-		std::cout << static_cast<int>(std::atof(param.c_str())) << std::endl;
-}
-
-void	printFloat(const std::string &param) {
-	std::cout << "float: ";
-	if (isCharacter(param) || isInteger(param))
-		std::cout << static_cast<float>(std::atof(param.c_str())) << ".0f" << std::endl;
+bool isSpecialLiteral(const std::string &param) {
+	return param == "nan" || param == "nanf" ||
+	       param == "+inf" || param == "+inff" ||
+	       param == "-inf" || param == "-inff";
 }
