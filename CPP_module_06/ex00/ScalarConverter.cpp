@@ -7,7 +7,9 @@
 
 ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter &other) {}
+ScalarConverter::ScalarConverter(const ScalarConverter &other) {
+	*this = other;
+}
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) {
 	(void)other;
@@ -106,22 +108,6 @@ bool isCharsValid(const std::string &str, const std::string &validChars) {
 			return false;
 	}
 	return true;
-}
-
-std::string removeChar(const std::string &str, const std::string &toRemove) {
-    std::string output;
-    for (std::size_t i = 0; i < str.length(); ++i) {
-        bool skip = false;
-        for (std::size_t j = 0; j < toRemove.length(); ++j) {
-            if (str[i] == toRemove[j]) {
-                skip = true;
-                break;
-            }
-        }
-        if (!skip)
-            output += str[i];
-    }
-    return output;
 }
 
 // checks

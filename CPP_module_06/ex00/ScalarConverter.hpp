@@ -16,7 +16,6 @@ class ScalarConverter {
 
 // helpers
 bool			isRepeated(const std::string &str, char c);
-std::string		removeChar(const std::string &str, const std::string &toRemove);
 
 // checkers	
 bool	isCharacter(const std::string &param);
