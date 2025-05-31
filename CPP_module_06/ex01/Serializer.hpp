@@ -1,7 +1,8 @@
-#pragma onece
+#pragma once
 
-#include <cstdint>
 #include "Data.hpp"
+
+typedef std::size_t uintptr_t;
 
 class Serializer {
 	private:

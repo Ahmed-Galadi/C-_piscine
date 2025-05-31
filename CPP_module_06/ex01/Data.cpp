@@ -18,6 +18,8 @@ Data &Data::operator=(const Data &other) {
 	return (*this);
 }
 
+Data::~Data() {}
+
 int	Data::getId() const {
 	return (this->id);
 }
@@ -35,6 +37,6 @@ void Data::setName(const std::string &nameToSet) {
 }
 
 std::ostream &operator<<(std::ostream &o, const Data &obj) {
-	o << "Id: " << obj.getId() << " ============> " << "name: " << obj.getName() << std::endl;
+	o << "\tId: " << obj.getId() << " | name: " << obj.getName() << std::endl;
 	return (o);
 }
