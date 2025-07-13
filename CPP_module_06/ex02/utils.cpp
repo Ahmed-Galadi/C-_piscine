@@ -6,6 +6,7 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include "exception"
 
 int randomIndex() {
 	int randomNum;
@@ -38,15 +39,15 @@ void identify(Base &p) {
 	try {
 		(void)dynamic_cast<A&>(p);
 		std::cout << "Type is \"A&\"\n";
-	} catch (const std::bad_cast &) {
+	} catch (const std::exception &) {
 		try {
 			(void)dynamic_cast<B&>(p);
 			std::cout << "Type is \"B&\"\n";
-		} catch (const std::bad_cast &) {
+		} catch (const std::exception &) {
 			try {
 				(void)dynamic_cast<C&>(p);
 				std::cout << "Type is \"C&\"\n";
-			} catch (const std::bad_cast &) {}
+			} catch (const std::exception &) {}
 		}
 	}
 }
