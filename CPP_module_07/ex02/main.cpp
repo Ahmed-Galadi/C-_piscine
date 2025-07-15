@@ -38,6 +38,12 @@ int main() {
 	std::cout << "Array 2:\n\t";
 	std::cout << *array2;
 
+	try {
+		copyArray2->setElem(404, 666);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
 	delete array1;
 	delete array2;
 	delete array3;
