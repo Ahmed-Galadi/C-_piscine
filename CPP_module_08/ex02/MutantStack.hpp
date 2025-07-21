@@ -1,29 +1,19 @@
 #pragma once 
 
-#include <deque>
+#include <stack>
 
 template<typename T>
-class MutantStack {
-	private:
-		std::deque<T> 	*data;
-	
+class MutantStack : public std::stack<T> {
 	public:
 		MutantStack();
 		MutantStack(const MutantStack<T> &other);
 		MutantStack &operator=(const MutantStack<T> &other);
 		~MutantStack();
 
-		T		top() const;
-		size_t 	size() const;
-		bool 	empty() const;
-		T		pop();
-		void	push(T value);
-		void	swap(MutantStack<T> &otherStack);
+		typedef typename std::deque<T>::iterator iterator;
 
-		class isEmpty : public std::exception {
-			public:
-				virtual const char *what() const throw();
-		};
+		iterator	begin();
+		iterator	end();
 };
 
 #include "MutantStack.tpp"

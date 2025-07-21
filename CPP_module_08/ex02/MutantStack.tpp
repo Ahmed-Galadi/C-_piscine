@@ -1,68 +1,26 @@
 #include "MutantStack.hpp"
 
 template<typename T>
-MutantStack<T>::MutantStack() {
-	data = new std::deque<T>();
-}
+MutantStack<T>::MutantStack() : std::stack<T>() {}
 
 template<typename T>
-MutantStack<T>::MutantStack(const MutantStack &other) {
-	 data = new std::deque<T>(*(other.data));
-}
+MutantStack<T>::MutantStack(const MutantStack<T> &other) : std::stack<T>(other) {}
 
 template<typename T>
 MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &other) {
-	if (this != &other) {
-		delete data;
-		data = new std::deque<T>(*(other.data));
-	}
+	std::stack<T>::operator=(other);
 	return *this;
 }
 
 template<typename T>
-MutantStack<T>::~MutantStack() {
-	delete data;
+MutantStack<T>::~MutantStack() {}
+
+template<typename T>
+typename MutantStack<T>::iterator MutantStack<T>::begin() {
+	return this->c.begin();
 }
 
 template<typename T>
-T 	MutantStack<T>::top() const {
-	if (!data->empty())
-		return (data->front());
-	throw(isEmpty());
-}
-
-template<typename T>
-size_t		MutantStack<T>::size() const {
-	return (data->size());
-}
-
-template<typename T>
-bool	MutantStack<T>::empty() const {
-	return (data->empty());
-}
-
-template<typename T>
-T	MutantStack<T>::pop() {
-	if (data->empty())
-		throw(isEmpty());
-
-	T output = data->front();
-	data->pop_front();
-	return (output);
-}
-
-template<typename T>
-void	MutantStack<T>::push(T value) {
-	data->push_front(value);
-}
-
-template<typename T>
-void	MutantStack<T>::swap(MutantStack<T> &otherStack) {
-	data->swap(*(otherStack.data));
-}
-
-template<typename T>
-
-const char *MutantStack<T>::isEmpty::what() const throw() {
-	return ("Error: Stack is Empty!");
+typename MutantStack<T>::iterator MutantStack<T>::end() {
+	return this->c.end();
 }
