@@ -1,6 +1,8 @@
+#include <sys/time.h>
 #include <iostream>
 #include <vector>
 #include <set>
+#include "Parsing.hpp"
 
 int binaryInsertionIndex(std::vector<int> &sortedInts, int start, int end, int target) {
     if (start > end)
@@ -86,10 +88,10 @@ std::vector<int> FordJohnsonAlgo(std::vector<int> &input) {
 
     // First insert Jacobsthal numbers
     for (size_t i = 0; i < jacobSeq.size(); ++i) {
-        int idx = jacobSeq[i];
-        if (idx < static_cast<int>(pend.size()) && insertedIndices.find(idx) == insertedIndices.end()) {
-            insert(main, pend[idx]);
-            insertedIndices.insert(idx);
+        int index = jacobSeq[i];
+        if (index < pend.size() && insertedIndices.find(index) == insertedIndices.end()) {
+            insert(main, pend[index]);
+            insertedIndices.insert(index);
         }
     }
 
@@ -113,28 +115,31 @@ void printVector(const std::vector<int> &vec) {
     std::cout << std::endl;
 }
 
+
 int main(int argc, char *argv[]) {
-    std::cout << "===============================================================\n";
-    if (argc < 2) {
-        std::cout << "Error: No numbers provided." << std::endl;
-        return 1;
-    }
-    std::vector<int> numbers;
-    for (int i = 1; i < argc; ++i) {
-        char* end;
-        long num = strtol(argv[i], &end, 10);
-        if (*end != '\0') {
-            std::cout << "Error: Invalid number: " << argv[i] << std::endl;
-            return 1;
-        }
-        numbers.push_back(static_cast<int>(num));
-    }
-    std::cout << "Unsorted Numbers: ";
-    printVector(numbers);
-    std::cout << "===============================================================\n";
-    std::cout << "Sorted Numbers: ";
-    std::vector<int> sorted = FordJohnsonAlgo(numbers);
-    printVector(sorted);
-    std::cout << "===============================================================\n";
-    return 0;
+	struct timeval 	start;
+	struct timeval 	end;
+	long 			elapsedInMS;
+	if (argc < 2)
+		return (0);
+	std::cout << "===========================================================================\n";
+	try {
+		Parsing<std::vector<int> > p(argv+1);
+		std::vector<int> l = p.inputParse(argc - 1);
+		std::cout << "Unsorted Numbers:\t" << p;
+		std::cout << "===========================================================================\n";
+		std::cout << "Sorted Numbers:\t\t";
+		gettimeofday(&start, NULL);
+		std::vector<int> sorted = FordJohnsonAlgo(l);
+		gettimeofday(&end, NULL);
+		printVector(sorted);
+		elapsedInMS = end.tv_usec - start.tv_usec;
+		std::cout << "===========================================================================\n";
+		std::cout << "The Program Took (" << elapsedInMS << "ms) to Sort [" << argc - 1 << "] numbers\n"; 
+	} catch (const std::exception &e) {
+		std::cout << "Error: " << e.what() << std::endl;
+		return (1);
+	}
+	std::cout << "===========================================================================\n";
+	return (0);
 }
