@@ -1,19 +1,18 @@
 #include "Parsing.hpp"
 #include <sstream>
+#include <set>
 
 template<typename Container>
-Parsing<Container>::Parsing() {
-	std::cout << "hello world!\n";
-}
+Parsing<Container>::Parsing() {}
 
 template<typename Container>
 Parsing<Container>::Parsing(char **args) : arguments(args) {}
 
 template<typename Container>
-Parsing<Container>::Parsing(const Parsing<Container> &other) {return (this);}
+Parsing<Container>::Parsing(const Parsing<Container> &other) {(void)other;return (this);}
 
 template<typename Container>
-Parsing<Container> &Parsing<Container>::operator=(const Parsing<Container> &other) {}
+Parsing<Container> &Parsing<Container>::operator=(const Parsing<Container> &other) {(void)other;}
 
 template<typename Container>
 Parsing<Container>::~Parsing() {}
@@ -22,9 +21,22 @@ template<typename Container>
 const	std::deque<int>	&Parsing<Container>::getOutput() const {
 	return (output);
 }
+template<typename Container>
+void	Parsing<Container>::haveDups(int size) const {
+	std::set<int> traversed;
+	for (int i = 0; i < size; i++)
+		if (!traversed.insert(toInt(std::string(arguments[i]))).second)
+			throw (foundDups());
+}
 
 template<typename Container>
 Container Parsing<Container>::inputParse(int size) {
+	try {
+		Parsing<Container>::haveDups(size);
+	} catch (const std::exception &e) {
+		std::cout << "\e[31mError: " << e.what() << "\e[0m" << std::endl;
+		exit(1);
+	}
 	for (int i = 0; i < size; i++)
 		if (isValidNumber(arguments[i]))
 			output.push_back(toInt(arguments[i]));
@@ -65,11 +77,15 @@ const char *Parsing<Container>::invalidInput::what() const throw() {
 }
 
 template<typename Container>
+const char *Parsing<Container>::foundDups::what() const throw() {
+	return ("Found Duplicates (no duplicated values are allowed)!");
+}
+
+template<typename Container>
 std::ostream &operator<<(std::ostream &o, const Parsing<Container> &parser) {
 	typename std::deque<int>::const_iterator it = parser.getOutput().begin();
 	for(; it != parser.getOutput().end(); it++)
 		o << *it << ", ";
-	std::cout << std::endl;
 	return (o);
 }
 

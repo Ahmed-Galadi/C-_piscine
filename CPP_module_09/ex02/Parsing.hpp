@@ -14,7 +14,7 @@ class	Parsing {
 		bool	isNegative(int n) const;
 		bool 	isValidNumber(char *str) const;
 		int		toInt(const std::string &str) const;
-
+		void	haveDups(int size) const;
 
 	public:
 		Parsing();
@@ -27,6 +27,11 @@ class	Parsing {
 		const std::deque<int> 	&getOutput() const;
 
 		class invalidInput : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class foundDups : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
