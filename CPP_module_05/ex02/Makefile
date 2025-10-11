@@ -14,7 +14,7 @@ all: $(NAME)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(shell ls | grep "_shrubbery")
 
 fclean: clean
 	rm -f $(NAME)

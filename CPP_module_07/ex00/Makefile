@@ -1,4 +1,4 @@
-NAME = identifier
+NAME = SwapMinMax
 SRCS = main.cpp 
 HDRS = SwapMinMax.hpp
 OBJS = $(SRCS:.cpp=.o)
