@@ -37,6 +37,6 @@ void Data::setName(const std::string &nameToSet) {
 }
 
 std::ostream &operator<<(std::ostream &o, const Data &obj) {
-	o << "\tId: " << obj.getId() << " | name: " << obj.getName() << std::endl;
+	o << "\tId: " << obj.getId() << " | name: " << obj.getName();
 	return (o);
 }

@@ -1,11 +1,13 @@
 #include <iostream>
 #include "Array.hpp"
+#include <string>
 
 int main() {
 	Array<int> *array1 = new Array<int>(5);
 	Array<float> *array2 = new Array<float>(5);
 	std::string name = "ABCDE";
 	Array<char> *array3 = new Array<char>(name.length());
+	
 
 	for (unsigned int i = 0; i < array1->size(); i++)
 		array1->setElem((i + i), i);
@@ -44,11 +46,32 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
+	Array<char> *testArr = new Array<char>(5);
+	try {
+	(*testArr)[0] = 'A';
+	(*testArr)[1] = 'B';
+	(*testArr)[2] = 'C';
+	(*testArr)[3] = 'D';
+	(*testArr)[4] = 'E';
+	(*testArr)[5] = 'F';
+	} catch (std::exception &e) {
+		std::cout << "Error [] operator: "<< e.what() << std::endl;
+	}
+	std::cout << *testArr;
+	
+	Array<std::string> *strArr = new Array<std::string>(2);
+	(*strArr)[0] = "hello";
+	(*strArr)[1] = "world";
+
+	std::cout << *strArr;
+
 	delete array1;
 	delete array2;
 	delete array3;
 	delete copyArray1;
 	delete copyArray2;
+	delete testArr;
+	delete strArr;
 
 	return (0);
 }

@@ -25,6 +25,20 @@ Array<T>	&Array<T>::operator=(const Array &other) {
 }
 
 template<typename T>
+T	&Array<T>::operator[](unsigned int index) {
+	if (index >= length)
+		throw (Array::OutOfBound());
+	return (this->array[index]);
+}
+
+template<typename T>
+T	Array<T>::operator[](unsigned int index) const {
+	if (index >= length)
+		throw (Array::OutOfBound());
+	return (T(array[index]));
+}
+
+template<typename T>
 Array<T>::~Array() {
 	delete[] this->array;
 }
@@ -70,7 +84,9 @@ const char	*Array<T>::OutOfBound::what() const throw() {
 template class Array<int>;
 template class Array<float>;
 template class Array<char>;
+template class Array<std::string>;
 
 template std::ostream &operator<<<int>(std::ostream &o, const Array<int> &other);
 template std::ostream &operator<<<float>(std::ostream &o, const Array<float> &other);
 template std::ostream &operator<<<char>(std::ostream &o, const Array<char> &other);
+template std::ostream &operator<<<std::string>(std::ostream &o, const Array<std::string> &other);
