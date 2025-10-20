@@ -14,7 +14,7 @@ int main() {
 		std::cout << numbers[i] << ", ";
 	std::cout << std::endl;
 
-	position = easyfind<std::vector<int> >(numbers, tofind);
+	position = easyfind(numbers, tofind);
 	if (position == -1)
 		std::cout << "Number Not Found!" << std::endl;
 	else

@@ -66,11 +66,11 @@ int main() {
 	
 	MutantStack<int> numbers;
 
-	printStack<int>(numbers);
+	printStack(numbers);
 	std::cout << "\t* push [8] to stack *" <<std::endl;
 	numbers.push(8);
 	std::cout << "Getting Top of the Stack => " << numbers.top() << std::endl;
-	printStack<int>(numbers);
+	printStack(numbers);
 
 	std::cout << "\t* push [9] to stack *" << std::endl;
 	numbers.push(9);
@@ -78,11 +78,11 @@ int main() {
 	std::cout << "\t* push [10] to stack *" << std::endl;
 	numbers.push(10);
 	
-	printStack<int>(numbers);
+	printStack(numbers);
 
 	std::cout << "\t* Pop Stack *" << std::endl;
 	numbers.pop();
-	printStack<int>(numbers);
+	printStack(numbers);
 
 	std::cout << "\t* Other Number Creation and Pushed [1337] *" << std::endl;
 	MutantStack<int> otherNumbers;
@@ -91,10 +91,6 @@ int main() {
 	otherNumbers.push(1997);
 	otherNumbers.push(1945);
 	otherNumbers.push(666);
-	printStack(otherNumbers);
-
-	std::cout << "\t* Swap otherNumbers With numbers *" << std::endl;
-	otherNumbers.swap(numbers);
 	printStack(otherNumbers);
 
 	std::cout << "\t* Print Using Iterators *" << std::endl;
@@ -106,5 +102,6 @@ int main() {
 	for (MutantStack<int>::iterator iter = otherNumbers.begin(); iter != otherNumbers.end(); iter++)
 		std::cout << *iter << "| ";
 	std::cout << std::endl;
+
 	return (0);
 }
