@@ -16,9 +16,13 @@ void	executeOperation(std::stack<int> &S, const char oper) {
 		S.push(firstOperand - secondOperand);
 	else if (oper == '*')
 		S.push(firstOperand * secondOperand);
-	else if (oper == '/')
+	else if (oper == '/') {
+		if (secondOperand == 0) {
+			std::cout << "Invalid Operation (Division By Zero)!\n";
+			exit(1);
+		}
 		S.push(firstOperand / secondOperand);
-	else {
+	} else {
 		std::cerr << "Invalid Token!\n";
 		exit(1);
 	}
@@ -38,7 +42,6 @@ int main(int argc, char *argv[]) {
 		return (1);
 	std::string args = argv[1];
 	removeSpaces(args);
-	/*args.erase(std::remove(args.begin(), args.end(), ' '), args.end());*/
 	for (size_t i = 0; i < args.length(); i++) {
 		if (std::isdigit(args[i]))
 			S.push(args[i] - '0');
