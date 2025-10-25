@@ -1,6 +1,7 @@
 #include "Parsing.hpp"
 #include <sstream>
 #include <set>
+#include <cstdlib>
 
 template<typename Container>
 Parsing<Container>::Parsing() {}
@@ -9,7 +10,10 @@ template<typename Container>
 Parsing<Container>::Parsing(char **args) : arguments(args) {}
 
 template<typename Container>
-Parsing<Container>::Parsing(const Parsing<Container> &other) {(void)other;return (this);}
+Parsing<Container>::Parsing(const Parsing<Container> &other) {
+	(void)other;
+	// return (*this);
+}
 
 template<typename Container>
 Parsing<Container> &Parsing<Container>::operator=(const Parsing<Container> &other) {(void)other;}

@@ -23,7 +23,7 @@ std::vector<int> getJacobsthalNumbers(int size) {
 std::vector<std::vector<int> > extractMainAndPend(std::vector<std::vector<int> > &pairsVector) {
     std::vector<int> main;
     std::vector<int> pend;
-    for (size_t i = 0; i < pairsVector.size(); ++i) {
+    for (std::size_t i = 0; i < pairsVector.size(); ++i) {
         if (pairsVector[i].size() == 2) {
             main.push_back(pairsVector[i][0]);
             pend.push_back(pairsVector[i][1]);

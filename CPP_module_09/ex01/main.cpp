@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stack>
-#include <algorithm>
 
 void	executeOperation(std::stack<int> &S, const char oper) {
 	if (S.size() < 2) {
@@ -25,13 +24,21 @@ void	executeOperation(std::stack<int> &S, const char oper) {
 	}
 }
 
+void	removeSpaces(std::string &str) {
+	std::string output;
+	for (int i = 0; i < str.length(); i++)
+		if (!isspace(str[i]))
+			output += str[i];
+	str = output;
+}
+
 int main(int argc, char *argv[]) {
 	std::stack<int> S;
 	if (argc < 2)
 		return (1);
-	std::string args = std::string(argv[1]);
-
-	args.erase(std::remove(args.begin(), args.end(), ' '), args.end());
+	std::string args = argv[1];
+	removeSpaces(args);
+	/*args.erase(std::remove(args.begin(), args.end(), ' '), args.end());*/
 	for (size_t i = 0; i < args.length(); i++) {
 		if (std::isdigit(args[i]))
 			S.push(args[i] - '0');

@@ -23,7 +23,7 @@ bool isDateValid(std::string date) {
 
 
 
-std::map<std::string, double> createFileMap(std::string &fileName) {
+std::map<std::string, double> createFileMap(std::string &fileName, char del) {
 	std::ifstream	file(fileName);
 	std::map<std::string, double> output;
 	if (!file.is_open())
@@ -31,58 +31,102 @@ std::map<std::string, double> createFileMap(std::string &fileName) {
 	std::string		line;
 	std::getline(file, line);
 	while (std::getline(file, line)) {
-		if (line.length() < 14) {
-			std::cout << "Error: Bad input => " << line << std::endl;
-			continue;
-		}
+
 		std::string datePart;
 		std::string valuePart;
-		size_t		pos = line.find('|');
-		if (pos == std::string::npos) {
-			std::cout << "Error: Bad input => + " << line << std::endl;
-			continue;
-		}
-		if (!std::isspace(line[pos + 1]) || !std::isspace(line[pos - 1])) {
-			std::cout << "Error: Bad input => * " << line << std::endl;
-			continue;
-		}
+		size_t		pos = line.find(del);
+
+		
 		datePart = line.substr(0, 10);
-		if (!isDateValid(datePart)) {
-			std::cout << "Error: Bad input => / " << line << std::endl;
-		}
-		valuePart = line.substr(13);
+
+		valuePart = line.substr(pos+1);
 		std::stringstream ss(valuePart);
 		double	value;
 		ss >> value;
+
+		output[datePart] = value;
+	}
+	return (output);
+}
+
+void	rmWhiteSpace(std::string &str) {
+	std::string output;
+	for (int i = 0; i < str.length(); i++)
+		if (!std::isspace(str[i]))
+			output += str[i];
+	str = output;
+}
+void decDate(std::string &date) {
+	int year = std::atoi(date.substr(0, 4).c_str());
+	int month = std::atoi(date.substr(5, 2).c_str());
+	int day = std::atoi(date.substr(8, 2).c_str());
+	
+	if (day - 1 == 0) {
+		day = 31;
+		if (month - 1 > 0) month--;
+		else month = 12, year--;
+	} else day--;
+	std::stringstream ss;
+	ss << year << "-";
+	if (month < 10) ss << '0';
+	ss << month << "-";
+	if (day < 10) ss << '0';
+	ss << day;
+	std::string output;
+	ss >> output;
+	date = output;
+}
+
+std::string getPrevDate(std::string &date, std::map<std::string, double> data) {
+	if (data[date] != 0)
+		return (date);
+	int goBackCount = 10;
+	while (goBackCount--) {
+		decDate(date);
+		if (data[date] != 0) return (date);
+	}
+	return ("xx-xx-xx");
+} 
+
+void	calculateBTC(std::map<std::string, double> data, std::string &inFileName) {
+	std::ifstream inFile(inFileName);
+	std::string line;
+	std::getline(inFile, line);
+	while (std::getline(inFile, line)) {
+		std::string datePart = line.substr(0,10);
+		size_t pos = line.find('|');
+		if (!isDateValid(datePart) || pos == std::string::npos) {
+			std::cout << "Error: Bad Input => " << line << std::endl;
+			continue;
+		}
+		rmWhiteSpace(line);
+		pos = line.find('|');
+		std::stringstream ss(line.substr(pos+1));
+		double valuePart;
+		ss >> valuePart;
 		if (ss.fail()) {
 			std::cout << "Error: Bad Input => & " << line << std::endl;
 			continue;
 		}
-		if (value < 0){
-			std::cout << "Error: not a positive number.\n";
+		if (valuePart < 0) {
+			std::cout << "Error: Not a Positive Number.\n";
 			continue;
 		}
-		if (value >= INT_MAX) {
-
-			std::cout << "Error: too large number.\n";
+		if (valuePart > 1000) {
+			std::cout << "Error: too large a number.\n";
 			continue;
 		}
-		output.insert(std::make_pair(datePart, value));
-		std::cout << datePart << " => " << value << std::endl;
+		std::string date = getPrevDate(datePart, data);
+		std::cout << datePart << " " << valuePart << " => " << (valuePart * data[date]) << std::endl;
 	}
-	return (output);
 }
 
 int main(int argc, char *argv[]) {
 	if (argc <= 1)
 		return (1);
 	std::string input = argv[1];
-	try {
-	createFileMap(input);
-	} catch (const char *s) {
-		std::cout << s << std::endl;
-	} catch (...) {
-		std::cout << "Error: something went wrong!" << std::endl;
-	}
+	std::string data = "data.csv";
+	std::map<std::string, double> BTCdata = createFileMap(data, ',');
+	calculateBTC(BTCdata, input); 
 	return (0);
 }
