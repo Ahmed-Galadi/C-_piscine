@@ -5,6 +5,10 @@
 #include <sstream>
 #include <climits>
 
+bool isLeap(int year) {
+	return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
+}
+
 bool isDateValid(std::string date) {
 	if (date.length() != 10)
 		return (false);
@@ -18,7 +22,10 @@ bool isDateValid(std::string date) {
 	int year = std::atoi(date.substr(0, 4).c_str());
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
-	return (year <= 9999 && year >= 1000 && month >= 1 && month <= 12 && day >= 1 && day <= 31);
+	int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (isLeap(year))
+		daysInMonth[2] = 29;
+	return (year <= 9999 && year >= 1000 && month >= 1 && month <= 12 && day >= 1 && day <= daysInMonth[month]);
 }
 
 
@@ -83,6 +90,7 @@ std::string getPrevDate(std::string &date, std::map<std::string, double> data) {
 	int goBackCount = 10;
 	while (goBackCount--) {
 		decDate(date);
+		if (!isDateValid(date)) continue;
 		if (data[date] != 0) return (date);
 	}
 	return ("xx-xx-xx");
@@ -96,7 +104,7 @@ void	calculateBTC(std::map<std::string, double> data, std::string &inFileName) {
 		std::string datePart = line.substr(0,10);
 		size_t pos = line.find('|');
 		if (!isDateValid(datePart) || pos == std::string::npos) {
-			std::cout << "Error: Bad Input => " << line << std::endl;
+			std::cout << "\e[31mError: Bad Input => \e[35m" << line << "\e[0m" << std::endl;
 			continue;
 		}
 		rmWhiteSpace(line);
@@ -105,15 +113,15 @@ void	calculateBTC(std::map<std::string, double> data, std::string &inFileName) {
 		double valuePart;
 		ss >> valuePart;
 		if (ss.fail()) {
-			std::cout << "Error: Bad Input => & " << line << std::endl;
+			std::cout << "\e[31mError: Bad Input => \e[35m" << line << "\e[0m" << std::endl;
 			continue;
 		}
 		if (valuePart < 0) {
-			std::cout << "Error: Not a Positive Number.\n";
+			std::cout << "\e[31mError: Not a Positive Number.\e[0m\n";
 			continue;
 		}
 		if (valuePart > 1000) {
-			std::cout << "Error: too large a number.\n";
+			std::cout << "\e[31mError: too large a number.\e[0m\n";
 			continue;
 		}
 		std::string date = getPrevDate(datePart, data);
