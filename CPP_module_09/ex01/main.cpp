@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stack>
-#include <sstream>
+#include <algorithm>
 
 void	executeOperation(std::stack<int> &S, const char oper) {
 	if (S.size() < 2) {
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 	std::stack<int> S;
 	if (argc < 2)
 		return (1);
-	std::string args(argv[1]);
+	std::string args = std::string(argv[1]);
 
 	args.erase(std::remove(args.begin(), args.end(), ' '), args.end());
 	for (size_t i = 0; i < args.length(); i++) {
